@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h2 class="text-red-500">Desde register</h2>
+    <h2>Desde register</h2>
 </body>
 </html>
