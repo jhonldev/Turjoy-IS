@@ -19,7 +19,7 @@ export default {
                 'neutral': '#EAEAEA'
             },
             'red-custom':{
-                '100': '#FF6B6B'
+                '100': '#FF6B6B',
             }
 
         }
