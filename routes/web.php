@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\auth\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('register', function () {
     return view('register');
 })->name('register');
+
+
+Route::get('login',[AuthController::class, 'login'])->name('login');
