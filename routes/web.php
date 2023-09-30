@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,6 @@ Route::get('register', function () {
     return view('register');
 })->name('register');
 
+Route::get('/home',[AdminController::class, 'home'])->name('home');
 
 Route::get('login',[AuthController::class, 'login'])->name('login');
