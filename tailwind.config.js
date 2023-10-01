@@ -16,6 +16,7 @@ export default {
             'grey-custom':{
                 'light': '#F4F4F4',
                 'dark': '#333333',
+                'darkSmoke': 'rgba(51, 51, 51, 0.19)',
                 'neutral': '#EAEAEA'
             },
             'red-custom':{
