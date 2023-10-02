@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('destination');
             $table->integer('available_seats');
             $table->integer('base_rate');
-            $table->string('reservation_code');
-            $table->string('adminuser');
+            $table->string('useremail');
             $table->timestamps();
         });
     }
