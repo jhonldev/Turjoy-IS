@@ -58,10 +58,10 @@ class LoadController extends Controller
         if (str_replace(' ', '', $origin) == str_replace(' ', '', $destination)) {
             return false;
         }
-        if (!(is_numeric($available_seats) || $available_seats >= 0)) {
+        if (!(is_numeric($available_seats)) || !($available_seats >= 0)) {
             return false;
         }
-        if (!(is_numeric($base_rate) || $base_rate >= 0)) {
+        if (!(is_numeric($base_rate)) || !($base_rate >= 0)) {
             return false;
         }
 
