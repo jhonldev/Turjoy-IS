@@ -16,7 +16,7 @@
                             Destino
                         </th>
                         <th scope="col" class="px-6 py-3 border-r-2 border-grey-custom-light ">
-                            Asientos disponibles
+                            Cantidad de asientos
                         </th>
                         <th scope="col" class="px-6 py-3 border-r-2 border-grey-custom-light ">
                             Tarifa base
@@ -27,16 +27,16 @@
                     @if (count($validRoutes) > 0)
                         @foreach ($validRoutes as $validRoute)
                             <tr class="border-b-2 border-grey-custom-light dark:bg-green-custom-validate ">
-                                <td class="px-6 py-4 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
+                                <td class="px-6 py-3 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
                                     {{ $validRoute->origin}}
                                 </td>
-                                <td class="px-6 py-4 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
+                                <td class="px-6 py-3 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
                                     {{ $validRoute->destination}}
                                 </td>
-                                <td class="px-6 py-4 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
+                                <td class="px-6 py-3 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
                                     {{$validRoute->available_seats}}
                                 </td>
-                                <td class="px-6 py-4 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
+                                <td class="px-6 py-3 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
                                     {{'$'. $validRoute->base_rate . ' CLP'}}
                                 </td>
                             </tr>
@@ -45,16 +45,16 @@
                     @if (count($invalidRoutes) > 0)
                         @foreach ($invalidRoutes as $invalidRoute)
                         <tr class="border-b-2  dark:bg-red-custom-invalidate">
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $invalidRoute->origin}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $invalidRoute->destination}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{$invalidRoute->available_seats}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{'$'. $invalidRoute->base_rate . ' CLP'}}
                             </td>
                             </tr>
@@ -65,16 +65,16 @@
                     @if (count($cloneRoutes) > 0)
                         @foreach ($cloneRoutes as $cloneRoute)
                         <tr class="border-b-2 dark:bg-yellow-custom-clone ">
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $cloneRoute->origin}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $cloneRoute->destination}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{$cloneRoute->available_seats}}
                             </td>
-                            <td class="px-6 py-4 text-grey-custom-dark border-r-2 whitespace-nowrap">
+                            <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{'$'. $cloneRoute->base_rate . ' CLP'}}
                             </td>
                             </tr>

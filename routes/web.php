@@ -28,7 +28,6 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 
 Route::get('loadRoute', [LoadController::class, 'create'])->name('loadRoute');
 
-Route::get('loadRoute', [LoadController::class, 'route'])->name('loadRoute.route');
 
 /*Route::middleware('auth')->group(function () {
   Route::get('loadRoute', [LoadController::class, 'create'])->name('loadRoute');

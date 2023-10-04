@@ -23,7 +23,16 @@ class LoadController extends Controller
     }
 
     public function create(){
-        return view('auth.loadRoute');
+        $validRoutes = [];
+        $invalidRoutes = [];
+        $cloneRoutes = [];
+
+        $routes = Route::all();
+
+        $this->filter($routes, $validRoutes, $invalidRoutes, $cloneRoutes);
+
+
+        return view('auth.loadRoute',['validRoutes' => $validRoutes,'invalidRoutes' => $invalidRoutes,'cloneRoutes' => $cloneRoutes]);
     }
 
     public function filter(Collection $routes,& $validRoutes,& $invalidRoutes ,& $cloneRoutes){
