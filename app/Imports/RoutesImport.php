@@ -22,6 +22,8 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
             $row[3] = str_replace(',', '', $row[3]);
             $row[3] = str_replace('.', '', $row[3]);
             $row[3] = floatval($row[3]);
+            $row[2] = intval($row[2]);
+
             return $row;
         });
 
@@ -32,7 +34,7 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
                 $this->duplicatedRows[] = $row;
             }else {
 
-                if (isset($row[0]) && isset($row[1]) && isset($row[2]) && isset($row[3]) && is_numeric($row[2]) && is_numeric($row[3])) {
+                if (isset($row[0]) && isset($row[1]) && isset($row[2]) && isset($row[3]) && is_numeric($row[2]) && is_numeric($row[3]) && $row[2] >= 0 && $row[3] >= 0) {
                     $this->validRows[] = $row;
                     $this->existingOriginsDestinations[] = $origin . '-' . $destination;
                 } else {

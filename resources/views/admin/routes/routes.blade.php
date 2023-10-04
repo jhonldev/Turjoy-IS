@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Importar rutas
+@endsection
+
 @section('content')
     @if ($validRows || $invalidRows || $duplicatedRows)
         <div class="flex flex-1 flex-col gap-2">
