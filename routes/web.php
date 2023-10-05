@@ -17,19 +17,16 @@ use App\Http\Controllers\auth\AuthController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('register', function () {
     return view('register');
 })->name('register');
 
 
-Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
-Route::get('loadRoute', [LoadController::class, 'create'])->name('loadRoute');
 
-Route::get('loadRoute', [LoadController::class, 'route'])->name('loadRoute.route');
-
-/*Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
   Route::get('loadRoute', [LoadController::class, 'create'])->name('loadRoute');
-);*/
+});

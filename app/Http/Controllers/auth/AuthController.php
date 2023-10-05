@@ -19,6 +19,10 @@ class AuthController extends Controller
 
         ], $messages);
 
+        if(!auth()->attempt($request->only('email','password'),$request->remember)){
+            return back()->with('message','usuario no registrado o contraseña incorrecta');
+        }
+        return redirect()->route('loadRoute');
     }
 
 }
