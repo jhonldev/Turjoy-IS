@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('destination');
             $table->integer('available_seats');
             $table->integer('base_rate');
-            $table->string('useremail');
             $table->timestamps();
+            $table->unsignedBigInteger('iduser');
+            $table->foreign('iduser')->references('id')->on('users');
         });
     }
 

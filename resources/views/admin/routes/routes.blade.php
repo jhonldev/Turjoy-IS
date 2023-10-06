@@ -4,11 +4,11 @@
     @if ($validRows || $invalidRows || $duplicatedRows)
     <h1 class="text-center mt-11 text-4xl font-bold text-grey-custom-dark"> Registro de tramos cargados</h1>
     <div class="flex p-6 space-y-4 md:space-y-6 sm:p-11">
-        <div class="w-2/3 relative overflow-x-auto rounded-lg overflow-y-auto " style="max-height: 700px; overflow-y: auto;" >
+        <div class="w-2/3 relative overflow-x-auto rounded-lg overflow-y-auto " style="max-height: 600px; overflow-y: auto;">
 
             @vite('resources/css/app.css')
             <table class="w-full text-sm text-left ">
-                <thead class="border-b-2 uppercase dark:bg-grey-custom-darkSmoke dark:text-grey-custom-dark sticky top-0 border-grey-custom-light"style="background-color: #EAEAEA;">
+                <thead class="border-b-2 uppercase dark:bg-grey-custom-darkSmoke dark:text-grey-custom-dark sticky top-0 border-grey-custom-light" style="background-color: #EAEAEA;">
                     <tr>
                         <th scope="col" class="px-6 py-3 border-r-2 border-grey-custom-light ";>
                             origen
@@ -135,10 +135,9 @@
                 <p class="text-grey-custom-dark text-center">
                     No se pudieron cargar debido a que ya existen anteriormente. El primer registro correcto entre Origen y Destino se considera válido, el resto incorrectos.</p>
             </div>
-
-
         </div>
     </div>
+    <div class="w-full text-center text-green-600 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
     @else
         <h1 class="text-center mt-3 mb-4 text-2xl font-bold text-grey-custom-dark"> Cargar archivo excel para importación de datos</h1>
         <div class="flex items-center justify-center w-full">
@@ -149,10 +148,10 @@
                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                     </svg>
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">XLSX (MAX. 5Mb)</p>
                 </div>
-                <input type="file" id="dropzone-file" name="file" class="unhidden">
+                <input type="file" id="dropzone-file" name="file" class="unhidden"  style="display: none">
+
                 @error('file')
                 <p class="bg-red-400 font-semibold my-4 text-lg text-center text-red-800 px-4 py-3 rounded-lg">
                     {{ $message }}</p>
@@ -162,6 +161,7 @@
                 Importar rutas
             </button>
             </form>
+
         </div>
     @endif
 @endsection

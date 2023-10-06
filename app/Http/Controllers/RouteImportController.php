@@ -40,6 +40,7 @@ class RouteImportController extends Controller
 
     public function routeCheck(Request $request)
     {
+        $iduser = auth()->user()->id;
         $messages = makeMessages();
         $this->validate($request, [
             'file' => ['required', 'max:5120', 'mimes:xlsx']
@@ -71,6 +72,7 @@ class RouteImportController extends Controller
                         'destination' => $destination,
                         'available_seats' => $row[2],
                         'base_rate' => $row[3],
+                        'iduser' =>  auth()->user()->id,
                     ]);
                 }
             }
