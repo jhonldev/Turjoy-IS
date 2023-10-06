@@ -31,3 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('routes.check');
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
 });
+
+// Redirect all wrong uri
+Route::get('/{any}', [AuthController::class, 'login'])->where('any', '.*')->name('wrongUri');

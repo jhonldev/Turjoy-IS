@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Importar rutas
+@endsection
+
 @section('content')
     @if ($validRows || $invalidRows || $duplicatedRows)
     <h1 class="text-center mt-11 text-5xl font-bold text-grey-custom-dark"> Registro de tramos cargados</h1>
