@@ -71,6 +71,7 @@ class RouteImportController extends Controller
                         'destination' => $destination,
                         'available_seats' => $row[2],
                         'base_rate' => $row[3],
+                        'iduser' =>  auth()->user()->id,
                     ]);
                 }
             }
