@@ -31,13 +31,30 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
             if ($this->hasDuplicateOriginDestination($origin, $destination)) {
                 $this->duplicatedRows[] = $row;
             }else {
-
-                if (isset($row[0]) && isset($row[1]) && isset($row[2]) && isset($row[3]) && is_numeric($row[2]) && is_numeric($row[3])) {
-                    $this->validRows[] = $row;
-                    $this->existingOriginsDestinations[] = $origin . '-' . $destination;
-                } else {
+                $available_seats = $row[2];
+                $base_rate = $row[3];
+                if (!preg_match("/^[A-Za-z\s]+$/", $origin)) {
                     $this->invalidRows[] = $row;
+                    continue;
                 }
+                if (!preg_match("/^[A-Za-z\s]+$/", $destination)) {
+                    $this->invalidRows[] = $row;
+                    continue;
+                }
+                if (str_replace(' ', '', strtolower($origin)) == str_replace(' ', '', strtolower($destination))) {
+                    $this->invalidRows[] = $row;
+                    continue;
+                }
+                if (!(is_numeric($available_seats)) || !($available_seats >= 0)) {
+                    $this->invalidRows[] = $row;
+                    continue;
+                }
+                if (!(is_numeric($base_rate)) || !($base_rate >= 0)) {
+                    $this->invalidRows[] = $row;
+                    continue;
+                }
+                $this->validRows[] = $row;
+                $this->existingOriginsDestinations[] = $origin . '-' . $destination;
             }
         }
     }

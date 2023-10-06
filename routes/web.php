@@ -28,6 +28,6 @@ Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/add/route', [RouteImportController::class, 'indexAddRoutes'])->name('routes.index');
-    Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('route.check');
+    Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('routes.check');
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
 });

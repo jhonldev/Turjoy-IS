@@ -139,9 +139,9 @@
     </div>
     <div class="w-full text-center text-green-600 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
     @else
-        <h1 class="text-center mt-3 mb-4 text-2xl font-bold text-grey-custom-dark"> Cargar archivo excel para importación de datos</h1>
+        <h1 class="text-center mt-11 text-4xl font-bold text-grey-custom-dark""> Cargar archivo excel para importación de datos</h1>
         <div class="flex items-center justify-center w-full">
-            <form class="flex flex-col items-center w-full" action="{{ route('routes.check') }}" method="post" enctype="multipart/form-data">
+            <form class="flex flex-col items-center w-full mt-11" action="{{ route('routes.check') }}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
