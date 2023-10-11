@@ -82,7 +82,7 @@
                    <a method="GET" href="{{route('logout')}}"
                        class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
                        <img src="{{ asset('http://127.0.0.1:8000/images/icono-salida.png') }}" alt="Reporte de reservas" class="w-12 h-12 mr-2 ml-1">
-                       <span class="flex-1 ml-3 whitespace-nowrap">Salir</span>
+                       <span class="flex-1 ml-3 whitespace-nowrap">Cerrar Sesión</span>
                    </a>
                </li>
 
@@ -110,12 +110,6 @@
     </main>
     <!-- FOOTER SECTION -->
 
-    <footer
-        class="fixed bottom-0 left-0 z-20 w-full p-4 shadow md:flex md:items-center md:justify-between md:p-6 bg-grey-custom-dark border-grey-custom-darkSmoke">
-        <span class="text-sm text-grey-custom-darkSmoke sm:text-center text-grey-custom-light">© 2023 <a href=""
-                class="hover:underline">Turjoy™</a>. All Rights Reserved. {{ now()->year }}
-        </span>
-    </footer>
 </body>
 
 </html>

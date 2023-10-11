@@ -147,8 +147,8 @@
         <div class="flex items-center justify-center w-full">
             <form class="flex flex-col items-center w-full mt-44" action="{{ route('routes.check') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="dropzone-file" class="flex flex-col items-center justify-center w-2/5  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
-                <div class="flex flex-col items-center justify-center pt-10 pb-10">
+            <label for="dropzone-file" class="flex flex-col items-center justify-center w-1/3  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
+                <div class="flex flex-col items-center justify-center pt-6 pb-6">
 
                     <p class="text-3xl text-grey-custom-neutral ">Seleccione el documento excel</p>
                 </div>
