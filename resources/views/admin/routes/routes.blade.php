@@ -141,26 +141,28 @@
             </div>
         </div>
     </div>
-    <div class="w-full text-center text-green-600 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
+    <div class="w-full text-center text-green-custom-100 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
     @else
         <h1 class="text-center mt-11 text-5xl font-bold text-grey-custom-dark""> Cargar rutas de viaje</h1>
         <div class="flex items-center justify-center w-full">
             <form class="flex flex-col items-center w-full mt-44" action="{{ route('routes.check') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="dropzone-file" class="flex flex-col items-center justify-center w-1/3  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
-                <div class="flex flex-col items-center justify-center pt-8 pb-8">
+            <label for="dropzone-file" class="flex flex-col items-center justify-center w-2/5  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
+                <div class="flex flex-col items-center justify-center pt-10 pb-10">
 
                     <p class="text-3xl text-grey-custom-neutral ">Seleccione el documento excel</p>
                 </div>
                 <input type="file" id="dropzone-file" name="file" class="unhidden"  style="display: none">
             </label>
-            @error('file')
-                <p class=" my-4 text-lg text-center text-red-custom-invalidate px-4 py-3 rounded-lg">
-                    {{ $message }}</p>
-                @enderror
-            <button class="lg:w-1/4 my-4 p-2 bg-grey-custom-dark rounded-md text-white font-semibold" type="submit">
+            <p class=" text-lg text-center text-grey-custom-dark ">
+                Los archivos deben contener un extensión .xlsx</p>
+            <button class="lg:w-1/6 my-4 p-2 bg-grey-custom-dark rounded-md text-white font-semibold" type="submit">
                 Importar rutas
             </button>
+            @error('file')
+                <p class="text-lg text-center text-red-custom-invalidate px-4 py-3">
+                    {{ $message }}</p>
+                @enderror
             </form>
 
         </div>
