@@ -12,7 +12,7 @@
 
             @vite('resources/css/app.css')
             <table class="w-full text-sm text-left ">
-                <thead class="border-b-2 uppercase dark:bg-grey-custom-darkSmoke dark:text-grey-custom-dark sticky top-0 border-grey-custom-light" style="background-color: #EAEAEA;">
+                <thead class="border-b-2 uppercase bg-grey-custom-darkSmoke text-grey-custom-dark sticky top-0 border-grey-custom-light" style="background-color: rgba(51, 51, 51, 0.19);">
                     <tr>
                         <th scope="col" class="px-6 py-3 border-r-2 border-grey-custom-light ";>
                             origen
@@ -31,7 +31,7 @@
                 <tbody>
                     @if (count($validRows) > 0)
                         @foreach ($validRows as $validRow)
-                            <tr class="border-b-2 border-grey-custom-light dark:bg-green-custom-validate ">
+                            <tr class="border-b-2 border-grey-custom-light bg-green-custom-validate ">
                                 <td class="px-6 py-3 text-grey-custom-dark border-r-2 border-grey-custom-light whitespace-nowrap">
                                     {{ $validRow[0] }}
                                 </td>
@@ -49,7 +49,7 @@
                     @endif
                     @if (count($invalidRows) > 0)
                         @foreach ($invalidRows as $invalidRow)
-                        <tr class="border-b-2  dark:bg-red-custom-invalidate">
+                        <tr class="border-b-2  bg-red-custom-invalidate">
                             <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $invalidRow[0]}}
                             </td>
@@ -69,7 +69,7 @@
                     @endif
                     @if (count($duplicatedRows) > 0)
                         @foreach ($duplicatedRows as $duplicatedRow)
-                        <tr class="border-b-2 dark:bg-yellow-custom-clone ">
+                        <tr class="border-b-2 bg-yellow-custom-clone ">
                             <td class="px-6 py-3 text-grey-custom-dark border-r-2 whitespace-nowrap">
                                 {{ $duplicatedRow[0]}}
                             </td>
@@ -147,21 +147,18 @@
         <div class="flex items-center justify-center w-full">
             <form class="flex flex-col items-center w-full mt-44" action="{{ route('routes.check') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="dropzone-file" class="flex flex-col items-center justify-center w-1/3 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                    </svg>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">XLSX (MAX. 5Mb)</p>
+            <label for="dropzone-file" class="flex flex-col items-center justify-center w-1/3  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
+                <div class="flex flex-col items-center justify-center pt-8 pb-8">
+
+                    <p class="text-3xl text-grey-custom-neutral ">Seleccione el documento excel</p>
                 </div>
                 <input type="file" id="dropzone-file" name="file" class="unhidden"  style="display: none">
-
-                @error('file')
-                <p class="bg-red-400 font-semibold my-4 text-lg text-center text-red-800 px-4 py-3 rounded-lg">
+            </label>
+            @error('file')
+                <p class=" my-4 text-lg text-center text-red-custom-invalidate px-4 py-3 rounded-lg">
                     {{ $message }}</p>
                 @enderror
-            </label>
-            <button class="lg:w-1/4 my-4 p-2 bg-green-400 rounded-sm text-white font-semibold" type="submit">
+            <button class="lg:w-1/4 my-4 p-2 bg-grey-custom-dark rounded-md text-white font-semibold" type="submit">
                 Importar rutas
             </button>
             </form>

@@ -25,4 +25,10 @@ class AuthController extends Controller
         return redirect()->route('routes.index');
     }
 
+    public function logout()
+    {
+        Auth()->logout();
+        return redirect()->route('auth.login');
+    }
+
 }

@@ -9,7 +9,8 @@ export default {
     extend: {
         colors:{
             'blue-custom':{
-                '100': '#0A74DA'
+                '100': '#0A74DA',
+                'blueSmoke': 'rgba(10, 116, 218, 0.2)'
             },
             'green-custom':{
                 '100': '#2ECC71',

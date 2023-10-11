@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => "Italo Donoso",
+            'name' => "Italo Donoso Barraza",
             'email' => "italo.donoso@ucn.cl",
             'password' => "Turjoy91",
             'role' => true,
