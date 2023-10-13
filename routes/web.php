@@ -17,11 +17,11 @@ use App\Http\Controllers\RouteImportController;
 |
 */
 
-Route::get('/', function () {
+Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('register', function () {
+Route::get('/', function () {
     return view('register');
 })->name('register');
 

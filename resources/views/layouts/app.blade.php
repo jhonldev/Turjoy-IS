@@ -16,7 +16,7 @@
 
 
               @yield('openButton')
-              <a href="{{route('login')}}" class="flex items-center">
+              <a href="{{route('register')}}" class="flex items-center">
                   <img src="{{asset('images/Turjoy2_sinEslogan.png')}}" class="h-11 mr-3" alt="Turjoy Logo" />
                   <span class="self-center text-4xl font-semibold whitespace-nowrap text-white ">Turjoy</span>
               </a>
@@ -42,13 +42,22 @@
  <div id="drawer_navigation" class="fixed rounded-tl-lg top-[110px] right-0 z-40 h-[calc(100vh-60px)] p-4 overflow-y-auto transition-transform translate-y-full  w-80 bg-grey-custom-dark tabindex="-1" aria-labelledby="drawer-right-label" style="border-top-left-radius: 1.1rem;">
        <div class="py-4 overflow-y-auto">
            <ul class="space-y-2 font-medium">
+            @guest
+            <li>
+                <a href="{{route('login')}}"
+                class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
+                    <img src="{{ asset('http://127.0.0.1:8000/images/icono-user.png') }}" alt="Icono iniciar sesion" class="w-14 h-12 mr-1">
+                    <span class="ml-3">Iniciar Sesión</span>
+            </a>
+           </li>
+            @endguest
+            @auth
                <li>
                     <a
                     class="flex items-center p-2 rounded-lg text-white">
                         <img src="{{ asset('http://127.0.0.1:8000/images/icono-user.png') }}" alt="Icono usuario" class="w-14 h-12 mr-1">
                         <span class="ml-3">{{auth()->user()->name}}</span>
                 </a>
-                   </a>
                </li>
                <li>
                     <a href="{{route('routes.index')}}"
@@ -57,20 +66,24 @@
                         <span class="ml-3">Cargar rutas de viaje</span>
                 </a>
                </li>
+               @endauth
+               @guest
                <li>
-                    <a href="{{route('register.index')}}"
+                    <a href="{{route('register')}}"
                     class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
                     <img src="{{ asset('http://127.0.0.1:8000/images/icono-reservar-pasaje.png') }}" alt="Reservar pasajes" class="w-14 h-12 mr-1">
                     <span class="ml-3">Reservar pasajes</span>
                 </a>
                </li>
+               @endguest
                <li>
-                <a href="{{route('register.index')}}"
+                <a href="{{route('register')}}"
                 class="flex items-center p-2 rounded-lg text-white  hover:bg-blue-custom-blueSmoke">
                     <img src="{{ asset('http://127.0.0.1:8000/images/icono-consultar-reserva.png') }}" alt="Buscar reservas" class="w-12 h-12 mr-2 ml-1">
                     <span class="ml-3">Buscar reservas</span>
             </a>
                </li>
+               @auth
                <li>
                     <a href="{{route('register.index')}}"
                     class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
@@ -85,7 +98,7 @@
                        <span class="flex-1 ml-3 whitespace-nowrap">Cerrar Sesión</span>
                    </a>
                </li>
-
+               @endauth
            </ul>
        </div>
  </div>
