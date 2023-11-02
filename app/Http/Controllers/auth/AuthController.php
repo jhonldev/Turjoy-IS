@@ -22,7 +22,13 @@ class AuthController extends Controller
         if(!auth()->attempt($request->only('email','password'),$request->remember)){
             return back()->with('message','usuario no registrado o contraseña incorrecta');
         }
-        return redirect()->route('loadRoute');
+        return redirect()->route('routes.index');
+    }
+
+    public function logout()
+    {
+        Auth()->logout();
+        return redirect()->route('register');
     }
 
 }

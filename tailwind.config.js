@@ -3,12 +3,14 @@ export default {
   content: [
   "./resources/**/*.blade.php",
   "./resources/**/*.js",
-  "./resources/**/*.vue",],
+  "./resources/**/*.vue",
+  "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
         colors:{
             'blue-custom':{
-                '100': '#0A74DA'
+                '100': '#0A74DA',
+                'blueSmoke': 'rgba(10, 116, 218, 0.2)'
             },
             'green-custom':{
                 '100': '#2ECC71',
@@ -30,7 +32,7 @@ export default {
 
         }
     },
+    plugins: [require('flowbite/plugin')],
   },
-  plugins: [],
 }
 
