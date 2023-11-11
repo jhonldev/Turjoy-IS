@@ -21,9 +21,13 @@ Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/', function () {
-    return view('register');
-})->name('register');
+Route::get('/', [RouteImportController::class, 'registerIndex'])->name('register');
+
+
+Route::get('/get/origins', [RouteImportController::class, 'originIndex']);
+Route::get('/get/destinations/{origin}', [RouteImportController::class, 'searchDestinations']);
+Route::get('/seating/{origin}/{destination}', [RouteImportController::class, 'seatings']);
+
 
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');

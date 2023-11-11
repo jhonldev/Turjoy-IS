@@ -17,7 +17,7 @@
 
               @yield('openButton')
               <a href="{{route('register')}}" class="flex items-center">
-                  <img src="{{asset('images/Turjoy2_sinEslogan.png')}}" class="h-11 mr-3" alt="Turjoy Logo" />
+                  <img src="{{asset('images/Turjoy2_sinEslogan.png')}}" class="h-14 mr-4" alt="Turjoy Logo" />
                   <span class="self-center text-4xl font-semibold whitespace-nowrap text-white ">Turjoy</span>
               </a>
 
@@ -124,5 +124,5 @@
     <!-- FOOTER SECTION -->
 
 </body>
-
+@yield('js')
 </html>
