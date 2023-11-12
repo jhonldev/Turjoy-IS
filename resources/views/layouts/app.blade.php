@@ -77,7 +77,7 @@
                </li>
                @endguest
                <li>
-                <a href="{{route('home')}}"
+                <a href="{{route('search.index')}}"
                 class="flex items-center p-2 rounded-lg text-white  hover:bg-blue-custom-blueSmoke">
                     <img src="{{ asset('http://127.0.0.1:8000/images/icono-consultar-reserva.png') }}" alt="Buscar reservas" class="w-12 h-12 mr-2 ml-1">
                     <span class="ml-3">Buscar reservas</span>
@@ -85,7 +85,7 @@
                </li>
                @auth
                <li>
-                    <a href="{{route('home.index')}}"
+                    <a href="{{route('home')}}"
                     class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
                         <img src="{{ asset('http://127.0.0.1:8000/images/icono-reporte-reserva.png') }}" alt="Reporte de reservas" class="w-12 h-12 mr-2 ml-1">
                         <span class="ml-3">Reporte de reservas</span>

@@ -22,8 +22,11 @@ Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/', [RouteController::class, 'homeIndex'])->name('home');
+Route::get('search', function () {
+    return view('search');
+})->name('search.index');
 
+Route::get('/', [RouteController::class, 'homeIndex'])->name('home');
 
 Route::get('/get/origins', [RouteController::class, 'originIndex']);
 Route::get('/get/destinations/{origin}', [RouteController::class, 'searchDestinations']);
@@ -42,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('routes.check');
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
 });
+
+Route::get('/vouchers', [ReservationController::class, 'getByCode'])->name('search');
+Route::get('/vouchers/list', [ReservationController::class, 'search'])->name('searchVoucher');
 
 // Redirect all wrong uri
 Route::get('/{any}', [AuthController::class, 'login'])->where('any', '.*')->name('wrongUri');
