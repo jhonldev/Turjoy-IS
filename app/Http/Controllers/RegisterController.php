@@ -8,7 +8,7 @@ class RegisterController extends Controller
 {
     public function registerIndex()
     {
-        return view('register', [
+        return view('home', [
         ]);
     }
 }

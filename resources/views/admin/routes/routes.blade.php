@@ -7,7 +7,9 @@
 @section('content')
     @if ($validRows || $invalidRows || $duplicatedRows)
     <h1 class="text-center mt-11 text-5xl font-bold text-grey-custom-dark"> Registro de tramos cargados</h1>
+    <div class="w-full text-center text-green-custom-100 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
     <div class="flex p-6 space-y-4 md:space-y-6 sm:p-11">
+
         <div class="w-2/3 relative overflow-x-auto rounded-lg overflow-y-auto " style="max-height: 600px; overflow-y: auto;">
 
             @vite('resources/css/app.css')
@@ -141,7 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="w-full text-center text-green-custom-100 font-semibold mt-4" id="file-uploaded-message">Archivo cargado</div>
+
     @else
         <h1 class="text-center mt-11 text-5xl font-bold text-grey-custom-dark""> Cargar rutas de viaje</h1>
         <div class="flex items-center justify-center w-full">

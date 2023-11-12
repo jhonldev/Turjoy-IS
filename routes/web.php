@@ -5,6 +5,8 @@ use App\Http\Controllers\auth\LoadController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RouteImportController;
+use App\Http\Controllers\ReservationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +19,15 @@ use App\Http\Controllers\RouteImportController;
 |
 */
 
-Route::get('/', function () {
+Route::get('login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('register', function () {
-    return view('register');
-})->name('register');
-Route::get('home', function (){
-    return('home');
+Route::get('search', function () {
+    return view('search');
+})->name('search.index');
+Route::get('/', function (){
+    return view('home');
 })->name('home');
 
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
@@ -39,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
     Route::get('/soon',[RegisterController::class, 'registerIndex'])->name('register.index');
 });
+//TODO: Añadir autentificacion
+Route::get('/vouchers', [ReservationController::class, 'getByCode'])->name('search');
+Route::get('/vouchers/list', [ReservationController::class, 'search'])->name('searchVouchher');
 
 // Redirect all wrong uri
 Route::get('/{any}', [AuthController::class, 'login'])->where('any', '.*')->name('wrongUri');
+
+
