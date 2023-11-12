@@ -1,5 +1,7 @@
 <?php
-
+use Carbon\Carbon;
+use App\Models\Reservation;
+use Illuminate\Support\Str;
 
 function makeMessages(){
 
@@ -14,4 +16,24 @@ function makeMessages(){
 
     return $messages;
 
+}
+function validDate($date){
+    $fechaActual = date("d-m-Y");
+    $fechaVerificar = Carbon::parse($date);
+    if ($fechaVerificar->lessThan($fechaActual)) {
+        return true;
+    }
+    return false;
+}
+
+function generateReservationNumber(){
+    do {
+        $letters = Str::random(4); // Genera 4 letras aleatorias
+        $numbers = mt_rand(10, 99); // Genera 2 números aleatorios
+
+        $code = $letters.$numbers;
+
+        $response = Reservation::where('code', $code)->first();
+    } while ($response);
+    return $code;
 }

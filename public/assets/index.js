@@ -5,32 +5,10 @@ const selectSeat = document.getElementById('seat');
 const datePicker = document.getElementById('date');
 const baseRate = document.getElementById('base-rate');
 
-const verifySeating = () => {
-    const origin = selectOrigin.value;
-    const destination = selectDestinations.value;
-    const date = datePicker.value;
-
-    if(origin && destination && date){
-        fetch(`/seating/${origin}/${destination}/${date}`)
-            .then(response => response.json())
-            .then (date => {
-                //Manipula los datos recibidos aqui
-                console.log(data.seat)
-                addSeatinsgsToSelect(data.seat, data.travel)
-                console.log(data)
-            })
-            .catch(error =>{
-                console.error('Hubo un error:', error);
-            })
-    }
-}
-
-const addSeatinsgsToSelect = () => { //MODIFICAR
+const addSeatingsToSelect = (seats, travel) => {
     //Se eliminan todos los destinos
     clearSelectSeat();
-    //Se crea la opcion por defecto (Selectione un destino)
-
-    for (let index = 1; index <= seat; index++){
+    for (let index = 1; index <= seats; index++){
         const option = document.createElement('option');
         option.value = index;
         option.text = index;
@@ -39,9 +17,27 @@ const addSeatinsgsToSelect = () => { //MODIFICAR
     baseRate.value = travel.base_rate;
 }
 
-const clearSelectSeat = () =>{
-    while (selectDestinations.firstChild){
-        selectDestinations.removeChild(selectDestinations.firstChild);
+const verifySeating = () => {
+    const origin = selectOrigin.value;
+    const destination = selectDestinations.value;
+    const date = datePicker.value;
+
+    if(origin && destination && date){
+        fetch(`/seating/${origin}/${destination}/${date}`)
+            .then(response => response.json())
+            .then(data => {
+                //Manipula los datos recibidos aqui
+                addSeatingsToSelect(data.seats, data.travel)
+            })
+            .catch(error =>{
+                console.error('Hubo un error:', error);
+            });
+    }
+}
+
+const clearSelectSeat = () => {
+    while (selectSeat.firstChild) {
+        selectSeat.removeChild(selectSeat.firstChild);
     }
 }
 
@@ -84,7 +80,7 @@ const loadedOrigins = () => {
         .then(data => {
             //manipular los datos obtenidos
             const origins = data.origins;
-            console.log(origins)
+            //console.log(origins)
             addOriginsToSelect(origins);
         })
         .catch(error => {

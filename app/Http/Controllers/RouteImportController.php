@@ -87,29 +87,4 @@ class RouteImportController extends Controller
             return redirect()->route('routesAdd.index');
         }
     }
-
-    public function registerIndex (){
-        $travels = Route::get()->count();
-        return view('register',[
-            'countTravels' => $travels,
-        ]);
-    }
-
-    public function originIndex (){
-
-        $origins = Route::distinct()->orderBy('origin', 'asc')->pluck('origin');
-
-        return response()->json([
-            'origins' =>$origins,
-        ]);
-    }
-
-    public function searchDestinations($origin){
-
-        $destinations = Route::where('origin', $origin)->orderBy('destination', 'asc')->pluck('destination');
-
-        return response()->json([
-            'destination' =>$destinations,
-        ]);
-    }
 }
