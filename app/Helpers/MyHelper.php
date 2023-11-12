@@ -11,7 +11,9 @@ function makeMessages(){
         'password.required' => 'debe ingresar su contraseña para iniciar sesión',
         'file.required' => 'El campo documento es requerido.',
         'file.mimes' => 'El archivo seleccionado no es Excel con extensión .xlsx.',
-        'file.max' => 'El tamaño máximo del archivo a cargar no puede superar los 5 megabytes'
+        'file.max' => 'El tamaño máximo del archivo a cargar no puede superar los 5 megabytes',
+        'seat.required' => 'Debe seleccionar la cantidad de asientos antes de realizar la reserva',
+        'date.required' => 'Debe seleccionar la fecha del viaje antes de realizar la reserva',
     ];
 
     return $messages;

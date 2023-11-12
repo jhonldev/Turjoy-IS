@@ -21,6 +21,8 @@ class ReservationController extends Controller
         // Validar
         $makeMessages = makeMessages();
         $this->validate($request, [
+            'origin' =>['required'],
+            'destination' =>['required'],
             'seat' => ['required'],
             'total' => ['required'],
             'date' => ['date', 'required'],
@@ -38,17 +40,15 @@ class ReservationController extends Controller
         // Crear la reserva
         $ticket = Reservation::create([
         'code' => $request->code,
-        'seat' => $request->seat,
-        'date' => $request->date,
-        'total' => $request->total,
-        'travel_id' => $travel->id,
+        'quantity_seats' => $request->seat,
+        'reservation_date' => $request->date,
+        'payment' => $request->total,
+        'idroute' => $travel->id,
         ]);
 
         return redirect()->route('generate.pdf', [
             'id' => $ticket->id,
         ]);
     }
-    public function reservation(Request $request){
-        //dd($request);
-    }
+
 }

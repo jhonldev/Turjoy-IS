@@ -56,7 +56,7 @@
                         </div>
                         {{-- Precio reserva --}}
                         <input id="base-rate" name="total" value="" hidden>
-                        <button type="submit"
+                        <button type="button" id="button"
                         class="w-full text-white bg-grey-custom-dark hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Reservar
                         </button>
@@ -96,6 +96,7 @@
             const datePicker = document.getElementById('date').value;
             const selectedSeat = document.getElementById('seat').value;
             const fecha = new Date(datePicker);
+            fecha.setTime(fecha.getTime() + fecha.getTimezoneOffset() * 60 * 1000 + 60 * 60 * 1000);
             const dateFormatted = fecha.toLocaleDateString('es-ES', datePicker)
 
             const baseRate = document.getElementById('base-rate').value;
@@ -105,14 +106,15 @@
 
             if (selectedOrigin && selectedDestination && datePicker && selectedSeat && baseRate) {
                 Swal.fire({
-                    title: "¿Desea continuar?",
-                    text: "El total de la reserva entre " + selectedOrigin + " y " + selectedDestination +
-                        " para el día " + dateFormatted + " es de " + "$" + (baseRate * selectedSeat) +
-                        ` (${selectedSeat} Asientos)`,
-                    icon: "warning",
+                    //title: "¿Desea continuar?",
+                    text: "El total de la reserva entre " + selectedOrigin +
+                    " y " + selectedDestination + " para el día " + dateFormatted + " es de " +
+                     "$" + (baseRate * selectedSeat) +
+                    `(${selectedSeat} Asientos) ¿Desea continuar?`,
+                    //icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
+                    confirmButtonColor: "#2ECC71",
+                    cancelButtonColor: "#FF0000",
                     confirmButtonText: "Confirmar",
                     cancelButtonText: "Volver",
                 }).then((result) => {
@@ -122,5 +124,25 @@
                 });
             }
         });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var datepicker = document.getElementById('date');
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+
+            today = yyyy + '-' + mm + '-' + dd;
+            datepicker.setAttribute('min', today);
+         });
     </script>
 @endsection

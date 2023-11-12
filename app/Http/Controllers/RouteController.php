@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function registerIndex (){
+    public function homeIndex (){
         $travels = Route::get()->count();
-        return view('register',[
+        return view('home',[
             'countTravels' => $travels,
         ]);
     }
