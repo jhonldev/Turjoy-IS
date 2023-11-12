@@ -16,7 +16,7 @@
 
 
               @yield('openButton')
-              <a href="{{route('register')}}" class="flex items-center">
+              <a href="{{route('home')}}" class="flex items-center">
                   <img src="{{asset('images/Turjoy2_sinEslogan.png')}}" class="h-11 mr-3" alt="Turjoy Logo" />
                   <span class="self-center text-4xl font-semibold whitespace-nowrap text-white ">Turjoy</span>
               </a>
@@ -69,7 +69,7 @@
                @endauth
                @guest
                <li>
-                    <a href="{{route('register')}}"
+                    <a href="{{route('home')}}"
                     class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
                     <img src="{{ asset('http://127.0.0.1:8000/images/icono-reservar-pasaje.png') }}" alt="Reservar pasajes" class="w-14 h-12 mr-1">
                     <span class="ml-3">Reservar pasajes</span>
@@ -77,7 +77,7 @@
                </li>
                @endguest
                <li>
-                <a href="{{route('register')}}"
+                <a href="{{route('home')}}"
                 class="flex items-center p-2 rounded-lg text-white  hover:bg-blue-custom-blueSmoke">
                     <img src="{{ asset('http://127.0.0.1:8000/images/icono-consultar-reserva.png') }}" alt="Buscar reservas" class="w-12 h-12 mr-2 ml-1">
                     <span class="ml-3">Buscar reservas</span>
