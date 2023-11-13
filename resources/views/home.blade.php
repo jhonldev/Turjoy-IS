@@ -14,7 +14,7 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Reserva de pasajes en Turjoy
                     </h1>
-                    <form id=form action="{{route('reservation')}}" method="POST">
+                    <form id=form action="{{route('add-reservation')}}" method="POST">
                         @csrf
                         <div class="relative max-w-sm mt-8">
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-grey">

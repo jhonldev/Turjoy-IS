@@ -14,6 +14,8 @@ class Reservation extends Model
         'quantity_seats',
         'purchase_date',
         'payment',
-        'idroute'
+        'idroute',
+        'uri',
+        'pdf_name'
     ];
 }

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    Datos de reserva
+@endsection
 
 
     @section('content')
@@ -15,24 +18,26 @@
                             Datos de la reserva:
                         </th>
                         <tr class="data-row">
-                            <td class="bg-green-custom-validate rounded-tl-md">Reserva de número:</td>
+                            <td class="bg-green-custom-validate rounded-tl-md">Código de reserva:</td>
                             <td>{{ $reservation->code }}</td>
                         </tr>
                         <tr class="data-row">
-                            <td class= "bg-green-custom-validate">Fecha de la reserva:</td>
-                            <td>{{ $reservation->purchase_date }}</td>
+                            <td class= "bg-green-custom-validate">Dia de la reserva:</td>
+                            <td>{{ $reservation->reservation_date }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate">Cantidad de asientos:</td>
                             <td>{{ $reservation->quantity_seats }}</td>
                         </tr>
                         <tr class="data-row">
+                            <td class= "bg-green-custom-validate">Fecha de la compra:</td>
+                            <td>{{ $reservation->purchase_date }}</td>
+                        </tr>
+                        <tr class="data-row">
                             <td class= "bg-green-custom-validate rounded-bl-md">Valor de la reserva:</td>
                             <td>$ {{ $reservation->payment }} CLP</td>
                         </tr>
                     </table>
-
-
                 </div>
             </div>
         </div>

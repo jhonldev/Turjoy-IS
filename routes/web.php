@@ -33,8 +33,11 @@ Route::get('/get/destinations/{origin}', [RouteController::class, 'searchDestina
 Route::get('/seating/{origin}/{destination}/{date}', [RouteController::class, 'seatings']);
 
 //reservacion
-Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation');
+Route::post('/reservation', [ReservationController::class, 'store'])->name('add-reservation');
 
+// Voucher
+Route::get('/travel-reservation/{id}', [ReservationController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('download-pdf/{id}', [ReservationController::class, 'downloadPDF'])->name('pdf.download');
 
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
