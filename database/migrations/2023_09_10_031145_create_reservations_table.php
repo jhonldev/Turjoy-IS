@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity_seats');
             $table->dateTime('purchase_date');
             $table->integer('payment');
+            $table->string('uri')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('idroute');
             $table->foreign('idroute')->references('id')->on('routes');
