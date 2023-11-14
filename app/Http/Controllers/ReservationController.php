@@ -18,15 +18,14 @@ class ReservationController extends Controller
     {
         // Generar el numero de reserva
         $code = generateReservationNumber();
-        echo $code;
         // Modificar request
         $request->request->add(['code' => $code]);
 
         // Validar
         $makeMessages = makeMessages();
         $this->validate($request, [
-            'origin' =>['required'],
-            'destination' =>['required'],
+            'origins' =>['required'],
+            'destinations' =>['required'],
             'seat' => ['required'],
             'total' => ['required'],
             'date' => ['date', 'required'],
@@ -39,7 +38,7 @@ class ReservationController extends Controller
         }
 
         // Obtener viaje
-        $route = Route::where('origin', $request->origin)->where('destination', $request->destination)->first();
+        $route = Route::where('origin', $request->origins)->where('destination', $request->destinations)->first();
 
         // Crear la reserva
         $reservation = Reservation::create([
@@ -48,7 +47,7 @@ class ReservationController extends Controller
         'purchase_date' => date('Y-m-d'),
         'reservation_date' => $request->date,
         'payment' => $request->total,
-        'idroute' => $travel->id,
+        'idroute' => $route->id,
         ]);
 
         return redirect()->route('generate-pdf', [
