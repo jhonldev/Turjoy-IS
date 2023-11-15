@@ -20,7 +20,7 @@
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-grey">
                                 Fecha
                             </label>
-                            <input id="date" datepicker datepicker-autohide type="date" name="date"
+                            <input id="date" datepicker datepicker-autohide type="date" name="date" onkeydown="return false"
                                 class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                         </div>
 
