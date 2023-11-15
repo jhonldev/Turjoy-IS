@@ -14,14 +14,14 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Reserva de pasajes en Turjoy
                     </h1>
-                    <form id=form action="{{route('reservation')}}" method="POST">
+                    <form id=form action="{{route('add-reservation')}}" method="POST">
                         @csrf
                         <div class="relative max-w-sm mt-8">
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-grey">
                                 Fecha
                             </label>
                             <input id="date" datepicker datepicker-autohide type="date" name="date"
-                            class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                            class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                         </div>
 
                         <div>
@@ -30,7 +30,7 @@
                             </label>
 
                             <select id="origins" name="origins"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option value="" selected>Seleccione un origen </option>
 
                             </select>
@@ -41,7 +41,7 @@
                             </label>
 
                             <select id="destinations" name="destinations"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option value="" selected>Seleccione un destino </option>
                             </select>
                         </div>
@@ -50,7 +50,7 @@
                                 Cantidad de asientos
                             </label>
                             <select id="seat" name="seat"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option selected>Seleccione la cantidad de asientos </option>
                             </select>
                         </div>
@@ -109,7 +109,7 @@
                     //title: "¿Desea continuar?",
                     text: "El total de la reserva entre " + selectedOrigin +
                     " y " + selectedDestination + " para el día " + dateFormatted + " es de " +
-                     "$" + (baseRate * selectedSeat) +
+                     "$" + (baseRate * selectedSeat) + " CLP " +
                     `(${selectedSeat} Asientos) ¿Desea continuar?`,
                     //icon: "warning",
                     showCancelButton: true,

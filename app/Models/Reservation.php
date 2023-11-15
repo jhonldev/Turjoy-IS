@@ -16,5 +16,6 @@ class Reservation extends Model
         'payment',
         'idroute',
         'uri',
+        'pdf_name'
     ];
 }

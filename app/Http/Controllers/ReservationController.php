@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Models\Route;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 
@@ -21,8 +24,8 @@ class ReservationController extends Controller
         // Validar
         $makeMessages = makeMessages();
         $this->validate($request, [
-            'origin' =>['required'],
-            'destination' =>['required'],
+            'origins' =>['required'],
+            'destinations' =>['required'],
             'seat' => ['required'],
             'total' => ['required'],
             'date' => ['date', 'required'],
@@ -35,19 +38,20 @@ class ReservationController extends Controller
         }
 
         // Obtener viaje
-        $travel = Route::where('origin', $request->origin)->where('destination', $request->destination)->first();
+        $route = Route::where('origin', $request->origins)->where('destination', $request->destinations)->first();
 
         // Crear la reserva
-        $ticket = Reservation::create([
+        $reservation = Reservation::create([
         'code' => $request->code,
         'quantity_seats' => $request->seat,
+        'purchase_date' => date('Y-m-d H:i:s'),
         'reservation_date' => $request->date,
-        'payment' => $request->total,
-        'idroute' => $travel->id,
+        'payment' => $request->total*$request->seat,
+        'idroute' => $route->id,
         ]);
 
-        return redirect()->route('generate.pdf', [
-            'id' => $ticket->id,
+        return redirect()->route('generate-pdf', [
+            'id' => $reservation->id,
         ]);
     }
     public function search(Request $request)
@@ -56,8 +60,30 @@ class ReservationController extends Controller
         return view('reservations.index', ['reservations' => $reservations]);
     }
 
+    public function routeSearch($miString)
+    {
+        $reservations = Reservation::all();
+        foreach ($reservations as $reservation){
+            if($reservation->code == $miString){
+                $idRoute = $reservation->idroute;
+                $routes = Route::all();
+                foreach ($routes as $route){
+                    if($route->id == $idRoute){
+                        $result = [
+                        'origin' => $route->origin,
+                        'destination' => $route->destination
+                        ];
+                    return $result;
+                    }
+                }
+            }
+        }
+
+    }
+
     public function getByCode(Request $request)
     {
+
         $code = $request->code;
         if($code == null){
             return back()->with('message','Debe proporcionar un código de reserva');
@@ -69,7 +95,57 @@ class ReservationController extends Controller
             return back()->with('message', 'La reserva '. $code . ' no existe en el sistema');
         }
 
-        return view('voucher.voucher', ['reservation' => $reservation]);
+        $route = $this->routeSearch($code);
 
+        return view('voucher.voucher', ['reservation' => $reservation, 'route' => $route]);
+
+    }
+
+    public function downloadPDF($id){
+        $reservation = Reservation::findOrFail($id);
+
+        $path = storage_path('app\public\\'.$reservation->uri);
+
+        $filename = $reservation->pdf_name;
+
+        $mimeType = Storage::mimeType($path);
+
+        return response()->download($path, $filename, ['Content-Type' => $mimeType]);
+    }
+
+    public function generatePDF($id){
+        $reservation = Reservation::findOrFail($id);
+
+        // Crear una instacia de Dompdf
+        $domPDF = new Dompdf();
+
+        $data = [
+            'reservation' => $reservation,
+            'date' => date('d-m-Y'),
+        ];
+
+        $view_html = view('voucher.pdf', $data)->render();
+
+        $domPDF->loadHtml($view_html);
+
+        $domPDF->setPaper('A4', 'portrait');
+
+        $domPDF->render();
+
+        // Generar nombre de archivo aleatorio
+        $filename = 'user_'.Str::random(10).'.pdf';
+
+        // Guardar el PDF en la carpeta public
+        $path = 'pdfs\\'.$filename;
+        Storage::disk('public')->put($path, $domPDF->output());
+
+        Reservation::Where('id', $id)->update([
+            'pdf_name' => $filename,
+            'uri' => $path,
+        ]);
+
+        return view('voucher.voucher', [
+            'reservation' => $reservation
+        ]);
     }
 }

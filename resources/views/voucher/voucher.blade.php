@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+    Datos de reserva
+@endsection
 
 
     @section('content')
-
-    <section class="bg-grey-custom-light">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
@@ -15,28 +16,37 @@
                             Datos de la reserva:
                         </th>
                         <tr class="data-row">
-                            <td class="bg-green-custom-validate rounded-tl-md">Reserva de número:</td>
+                            <td class="bg-green-custom-validate rounded-tl-md">Origen:</td>
+                            <td>{{ $route['origin'] }}</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td class="bg-green-custom-validate rounded-tl-md">Destino:</td>
+                            <td>{{ $route['destination'] }}</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td class="bg-green-custom-validate rounded-tl-md">Código de reserva:</td>
                             <td>{{ $reservation->code }}</td>
                         </tr>
                         <tr class="data-row">
-                            <td class= "bg-green-custom-validate">Fecha de la reserva:</td>
-                            <td>{{ $reservation->purchase_date }}</td>
+                            <td class= "bg-green-custom-validate">Día de la reserva:</td>
+                            <td>{{ $reservation->reservation_date }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate">Cantidad de asientos:</td>
                             <td>{{ $reservation->quantity_seats }}</td>
                         </tr>
                         <tr class="data-row">
+                            <td class= "bg-green-custom-validate">Fecha de la compra:</td>
+                            <td>{{ $reservation->purchase_date }}</td>
+                        </tr>
+                        <tr class="data-row">
                             <td class= "bg-green-custom-validate rounded-bl-md">Valor de la reserva:</td>
-                            <td>$ {{ $reservation->payment }} CLP</td>
+                            <td>${{ $reservation->payment }} CLP</td>
                         </tr>
                     </table>
-
-
                 </div>
             </div>
         </div>
-      </section>
     @endsection
 
 
