@@ -96,7 +96,6 @@ class ReservationController extends Controller
         }
 
         $route = $this->routeSearch($code);
-        var_dump($route)    ;
 
         return view('voucher.voucher', ['reservation' => $reservation, 'route' => $route]);
 
@@ -122,7 +121,7 @@ class ReservationController extends Controller
 
         $data = [
             'reservation' => $reservation,
-            'date' => date('d-m-Y'),
+            'date' => date('Y-m-d H:i:s'),
         ];
 
         $view_html = view('voucher.pdf', $data)->render();

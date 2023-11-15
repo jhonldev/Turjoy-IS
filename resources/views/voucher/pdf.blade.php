@@ -66,7 +66,7 @@
     <div>
         <h2>Datos del concierto</h2>
         <p>Codigo de reserva:
-            <span>{{ $reservation->code}}</span>
+            <span>{{ $reservation->code }}</span>
         </p>
         <p>Ciudad de origen:
             <span>{{ $reservation->origin }}</span>
@@ -78,7 +78,7 @@
             <span>{{ $reservation->reservation_date }}</span>
         </p>
         <p>Cantidad de asientos:
-            <span>{{ $reservation->seat}}</span>
+            <span>{{ $reservation->seat }}</span>
         </p>
         <p>Fecha de la compra:
             <span>{{ $reservation->purchase_date }}</span>
