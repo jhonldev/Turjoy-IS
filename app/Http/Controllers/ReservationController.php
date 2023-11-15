@@ -96,6 +96,7 @@ class ReservationController extends Controller
         }
 
         $route = $this->routeSearch($code);
+        var_dump($route)    ;
 
         return view('voucher.voucher', ['reservation' => $reservation, 'route' => $route]);
 
@@ -144,8 +145,11 @@ class ReservationController extends Controller
             'uri' => $path,
         ]);
 
+        $route = $this->routeSearch($reservation->code);
+
+
         return view('voucher.voucher', [
-            'reservation' => $reservation
+            'reservation' => $reservation,'route' => $route
         ]);
     }
 }
