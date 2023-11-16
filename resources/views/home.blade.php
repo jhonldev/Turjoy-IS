@@ -7,21 +7,21 @@
 
 @section('content')
     @if ($countTravels > 0)
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div class="flex items-center justify-center px-6 py-8 mx-auto lg:py-0" style="min-height: 85vh">
 
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                 <div class= "p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Reserva de pasajes en Turjoy
                     </h1>
-                    <form id=form action="{{route('add-reservation')}}" method="POST">
+                    <form id=form action="{{ route('add-reservation') }}" method="POST">
                         @csrf
                         <div class="relative max-w-sm mt-8">
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-grey">
                                 Fecha
                             </label>
-                            <input id="date" datepicker datepicker-autohide type="date" name="date"
-                            class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                            <input id="date" datepicker datepicker-autohide type="date" name="date" onkeydown="return false"
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                         </div>
 
                         <div>
@@ -30,7 +30,7 @@
                             </label>
 
                             <select id="origins" name="origins"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option value="" selected>Seleccione un origen </option>
 
                             </select>
@@ -41,7 +41,7 @@
                             </label>
 
                             <select id="destinations" name="destinations"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option value="" selected>Seleccione un destino </option>
                             </select>
                         </div>
@@ -50,22 +50,22 @@
                                 Cantidad de asientos
                             </label>
                             <select id="seat" name="seat"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark dark:focus:border-grey-custom-dark dark:focus:border-blue-500">
+                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option selected>Seleccione la cantidad de asientos </option>
                             </select>
                         </div>
                         {{-- Precio reserva --}}
                         <input id="base-rate" name="total" value="" hidden>
                         <button type="button" id="button"
-                        class="w-full text-white bg-grey-custom-dark hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            class="w-full text-white bg-grey-custom-dark hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Reservar
                         </button>
                     </form>
                 </div>
             </div>
         </div>
-        @else
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    @else
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0" style="min-height: 85vh">
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                 <div class= "p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
@@ -79,7 +79,7 @@
 
 
 @section('js')
-    <script src="{{asset('assets/index.js')}}"></script>
+    <script src="{{ asset('assets/index.js') }}"></script>
 
     {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -108,9 +108,9 @@
                 Swal.fire({
                     //title: "¿Desea continuar?",
                     text: "El total de la reserva entre " + selectedOrigin +
-                    " y " + selectedDestination + " para el día " + dateFormatted + " es de " +
-                     "$" + (baseRate * selectedSeat) +
-                    `(${selectedSeat} Asientos) ¿Desea continuar?`,
+                        " y " + selectedDestination + " para el día " + dateFormatted + " es de " +
+                        "$" + (baseRate * selectedSeat) + " CLP " +
+                        `(${selectedSeat} Asientos) ¿Desea continuar?`,
                     //icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#2ECC71",
@@ -126,7 +126,7 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var datepicker = document.getElementById('date');
             var today = new Date();
             var dd = today.getDate();
@@ -143,6 +143,6 @@
 
             today = yyyy + '-' + mm + '-' + dd;
             datepicker.setAttribute('min', today);
-         });
+        });
     </script>
 @endsection

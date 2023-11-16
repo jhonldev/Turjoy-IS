@@ -6,9 +6,7 @@
 
 
     @section('content')
-
-    <section class="bg-grey-custom-light">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0" style="min-height: 85vh">
 
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -18,11 +16,19 @@
                             Datos de la reserva:
                         </th>
                         <tr class="data-row">
+                            <td class="bg-green-custom-validate rounded-tl-md">Origen:</td>
+                            <td>{{ $route['origin'] }}</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td class="bg-green-custom-validate rounded-tl-md">Destino:</td>
+                            <td>{{ $route['destination'] }}</td>
+                        </tr>
+                        <tr class="data-row">
                             <td class="bg-green-custom-validate rounded-tl-md">Código de reserva:</td>
                             <td>{{ $reservation->code }}</td>
                         </tr>
                         <tr class="data-row">
-                            <td class= "bg-green-custom-validate">Dia de la reserva:</td>
+                            <td class= "bg-green-custom-validate">Día de la reserva:</td>
                             <td>{{ $reservation->reservation_date }}</td>
                         </tr>
                         <tr class="data-row">
@@ -35,7 +41,7 @@
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate rounded-bl-md">Valor de la reserva:</td>
-                            <td>$ {{ $reservation->payment }} CLP</td>
+                            <td>${{ $reservation->payment }} CLP</td>
                         </tr>
                     </table>
                 </div>
@@ -54,7 +60,6 @@
                 </a>
             </div>
         </div>
-      </section>
     @endsection
     <hr>
 

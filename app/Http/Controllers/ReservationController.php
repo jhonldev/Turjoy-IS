@@ -46,7 +46,7 @@ class ReservationController extends Controller
         'quantity_seats' => $request->seat,
         'purchase_date' => date('Y-m-d H:i:s'),
         'reservation_date' => $request->date,
-        'payment' => $request->total,
+        'payment' => $request->total*$request->seat,
         'idroute' => $route->id,
         ]);
 
@@ -60,8 +60,30 @@ class ReservationController extends Controller
         return view('reservations.index', ['reservations' => $reservations]);
     }
 
+    public function routeSearch($miString)
+    {
+        $reservations = Reservation::all();
+        foreach ($reservations as $reservation){
+            if($reservation->code == $miString){
+                $idRoute = $reservation->idroute;
+                $routes = Route::all();
+                foreach ($routes as $route){
+                    if($route->id == $idRoute){
+                        $result = [
+                        'origin' => $route->origin,
+                        'destination' => $route->destination
+                        ];
+                    return $result;
+                    }
+                }
+            }
+        }
+
+    }
+
     public function getByCode(Request $request)
     {
+
         $code = $request->code;
         if($code == null){
             return back()->with('message','Debe proporcionar un código de reserva');
@@ -73,7 +95,9 @@ class ReservationController extends Controller
             return back()->with('message', 'La reserva '. $code . ' no existe en el sistema');
         }
 
-        return view('voucher.voucher', ['reservation' => $reservation]);
+        $route = $this->routeSearch($code);
+
+        return view('voucher.voucher', ['reservation' => $reservation, 'route' => $route]);
 
     }
 
@@ -97,7 +121,7 @@ class ReservationController extends Controller
 
         $data = [
             'reservation' => $reservation,
-            'date' => date('d-m-Y'),
+            'date' => date('Y-m-d H:i:s'),
         ];
 
         $view_html = view('voucher.pdf', $data)->render();
@@ -120,8 +144,11 @@ class ReservationController extends Controller
             'uri' => $path,
         ]);
 
+        $route = $this->routeSearch($reservation->code);
+
+
         return view('voucher.voucher', [
-            'reservation' => $reservation
+            'reservation' => $reservation,'route' => $route
         ]);
     }
 }

@@ -66,7 +66,7 @@
     <div>
         <h2>Datos del viaje</h2>
         <p>Codigo de reserva:
-            <span>{{ $reservation->code}}</span>
+            <span>{{ $reservation->code }}</span>
         </p>
         <p>Ciudad de origen:
             <span>{{ $reservation->route->origin }}</span>
@@ -74,7 +74,7 @@
         <p>Ciudad de destino:
             <span>{{ $reservation->route->destination }}</span>
         </p>
-        <p>Dia de la reserva:
+        <p>Día de la reserva:
             <span>{{ $reservation->reservation_date }}</span>
         </p>
         <p>Cantidad de asientos:
