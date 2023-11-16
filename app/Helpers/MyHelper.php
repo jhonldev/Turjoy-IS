@@ -35,7 +35,7 @@ function generateReservationNumber(){
 
         $code = $letters.$numbers;
 
-        $response = Reservation::where('code', $code)->first();
+        $response = Reservation::where('code', $code)->exists();
     } while ($response);
     return $code;
 }

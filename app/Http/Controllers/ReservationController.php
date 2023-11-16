@@ -44,7 +44,7 @@ class ReservationController extends Controller
         $reservation = Reservation::create([
         'code' => $request->code,
         'quantity_seats' => $request->seat,
-        'purchase_date' => date('Y-m-d'),
+        'purchase_date' => date('Y-m-d H:i:s'),
         'reservation_date' => $request->date,
         'payment' => $request->total,
         'idroute' => $route->id,
