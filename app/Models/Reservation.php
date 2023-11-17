@@ -18,4 +18,9 @@ class Reservation extends Model
         'uri',
         'pdf_name'
     ];
+
+    public function route()
+    {
+        return $this->belongsTo(Route::class, 'idroute');
+    }
 }

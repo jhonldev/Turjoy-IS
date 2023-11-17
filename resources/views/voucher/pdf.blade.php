@@ -64,21 +64,21 @@
         </h3>
     </div>
     <div>
-        <h2>Datos del concierto</h2>
+        <h2>Datos del viaje</h2>
         <p>Codigo de reserva:
             <span>{{ $reservation->code }}</span>
         </p>
         <p>Ciudad de origen:
-            <span>{{ $reservation->origin }}</span>
+            <span>{{ $reservation->route->origin }}</span>
         </p>
         <p>Ciudad de destino:
-            <span>{{ $reservation->destination }}</span>
+            <span>{{ $reservation->route->destination }}</span>
         </p>
         <p>Día de la reserva:
             <span>{{ $reservation->reservation_date }}</span>
         </p>
         <p>Cantidad de asientos:
-            <span>{{ $reservation->seat }}</span>
+            <span>{{ $reservation->quantity_seats}}</span>
         </p>
         <p>Fecha de la compra:
             <span>{{ $reservation->purchase_date }}</span>
