@@ -61,7 +61,7 @@
         <h3>Viajes Turjoy</h3>
         <h3>Fecha:
             <span>{{ $reservation->purchase_date }}</span>
-        </h3>
+    </h3>   
     </div>
     <div>
         <h2>Datos del viaje</h2>
