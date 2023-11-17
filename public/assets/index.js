@@ -4,10 +4,16 @@ const selectDestinations = document.getElementById('destinations');
 const selectSeat = document.getElementById('seat');
 const datePicker = document.getElementById('date');
 const baseRate = document.getElementById('base-rate');
-
 const addSeatingsToSelect = (seats, travel) => {
     //Se eliminan todos los destinos
     clearSelectSeat();
+    var errorElement = document.getElementById('error');
+    errorElement.innerHTML = "";
+    if(seats == 0) {
+        var errorElement = document.getElementById('error');
+        errorElement.innerHTML = "no hay servicios disponibles para la ruta seleccionada";
+        return;
+    }
     for (let index = 1; index <= seats; index++){
         const option = document.createElement('option');
         option.value = index;

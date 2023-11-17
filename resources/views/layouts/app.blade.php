@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title')</title>
+    <style>
+        .textError {
+            color: #FF8A80;
+        }
+    </style>
 </head>
 
 <body class="bg-grey-custom-neutral">

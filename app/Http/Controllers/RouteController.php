@@ -40,6 +40,7 @@ class RouteController extends Controller
         if ($travel) {
             $tickets = Reservation::where('idroute', $travel->id)->where('reservation_date', $date)->sum('quantity_seats');
             $seatNow = $travel->available_seats - $tickets;
+
             return response()->json([
                 'seats' => $seatNow, 'travel' => $travel,
             ]);

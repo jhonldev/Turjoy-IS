@@ -20,7 +20,8 @@
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-grey">
                                 Fecha
                             </label>
-                            <input id="date" datepicker datepicker-autohide type="date" name="date" onkeydown="return false"
+                            <input id="date" datepicker datepicker-autohide type="date" name="date"
+                                onkeydown="return false"
                                 class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                         </div>
 
@@ -50,16 +51,20 @@
                                 Cantidad de asientos
                             </label>
                             <select id="seat" name="seat"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
+                                class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-grey-custom-neutral focus:ring-blue-500 focus:border-grey-custom-dark dark:bg-grey-custom-neutral dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey-custom-dark ">
                                 <option selected>Seleccione la cantidad de asientos </option>
                             </select>
+                            <p id="error" class="textError p-2"></p>
+
                         </div>
                         {{-- Precio reserva --}}
-                        <input id="base-rate" name="total" value="" hidden>
-                        <button type="button" id="button"
-                            class="w-full text-white bg-grey-custom-dark hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Reservar
-                        </button>
+                        <div style="margin-top: 15px">
+                            <input id="base-rate" name="total" value="" hidden>
+                            <button type="button" id="button"
+                                class="p-6 w-full text-white bg-grey-custom-dark hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Reservar
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
