@@ -159,7 +159,7 @@
                     class="flex flex-col items-center justify-center w-1/3  bg-grey-custom-dark rounded-lg hover:bg-grey-custom-darkSmoke">
                     <div class="flex flex-col items-center justify-center pt-6 pb-6">
 
-                        <p class="text-3xl text-grey-custom-neutral ">Seleccione el documento excel</p>
+                        <p class="text-3xl text-grey-custom-neutral ">Seleccione el "documento" excel</p>
                     </div>
                     <input type="file" id="dropzone-file" name="file" class="unhidden" style="display: none">
                 </label>
