@@ -16,6 +16,7 @@ function makeMessages(){
         'file.empty' => 'El archivo se encuentra vacío.',
         'seat.required' => 'Debe seleccionar la cantidad de asientos antes de realizar la reserva',
         'date.required' => 'Debe seleccionar la fecha del viaje antes de realizar la reserva',
+        'reservation.data' => 'debe llenar todos los campos para realizar la reserva',
     ];
 
     return $messages;

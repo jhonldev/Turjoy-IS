@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ $reservation->code }}</title>
+    <title>{{ $code }}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
 
@@ -56,37 +56,37 @@
 </head>
 
 <body>
-    <h1 class=" title">Comprobante de Reserva de Pasaje: {{ $reservation->code }}</h1>
+    <h1 class=" title">Comprobante de Reserva de Pasaje: </h1>
     <div>
         <h3>Viajes Turjoy</h3>
         <h3>Fecha:
-            <span>{{ $reservation->purchase_date }}</span>
+            <span>{{ $purchase_date_es }}</span>
     </h3>
     </div>
     <div>
         <h2>Detalles de la reserva</h2>
         <p>Codigo de reserva:
-            <span>{{ $reservation->code }}</span>
+            <span>{{ $code }}</span>
         </p>
         <p>Ciudad de origen:
-            <span>{{ $reservation->route->origin }}</span>
+            <span>{{ $origin }}</span>
         </p>
         <p>Ciudad de destino:
-            <span>{{ $reservation->route->destination }}</span>
+            <span>{{ $destination }}</span>
         </p>
         <p>Día de la reserva:
-            <span>{{ $reservation->reservation_date }}</span>
+            <span>{{ $reservation_date_es }}</span>
         </p>
         <p>Cantidad de asientos:
-            <span>{{ $reservation->quantity_seats}}</span>
+            <span>{{ $quantity_seats}}</span>
         </p>
         <p>Fecha de la compra:
-            <span>{{ $reservation->purchase_date }}</span>
+            <span>{{ $purchase_date_es }}</span>
         </p>
     </div>
     <hr>
     <div class="total">
-        <p class="total-pay">Total pagado: {{ $reservation->payment }}</p>
+        <p class="total-pay">Total pagado: {{ $payment }}</p>
     </div>
 </body>
 

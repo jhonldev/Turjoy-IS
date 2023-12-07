@@ -17,31 +17,31 @@
                         </th>
                         <tr class="data-row">
                             <td class="bg-green-custom-validate rounded-tl-md">Origen:</td>
-                            <td>{{ $route['origin'] }}</td>
+                            <td>{{ $origin }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class="bg-green-custom-validate rounded-tl-md">Destino:</td>
-                            <td>{{ $route['destination'] }}</td>
+                            <td>{{ $destination }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class="bg-green-custom-validate rounded-tl-md">Código de reserva:</td>
-                            <td>{{ $reservation->code }}</td>
+                            <td>{{ $code }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate">Día de la reserva:</td>
-                            <td>{{ $reservation->reservation_date }}</td>
+                            <td>{{ $reservation_date_es }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate">Cantidad de asientos:</td>
-                            <td>{{ $reservation->quantity_seats }}</td>
+                            <td>{{ $quantity_seats }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate">Fecha de la compra:</td>
-                            <td>{{ $reservation->purchase_date }}</td>
+                            <td>{{ $purchase_date_es }}</td>
                         </tr>
                         <tr class="data-row">
                             <td class= "bg-green-custom-validate rounded-bl-md">Valor de la reserva:</td>
-                            <td>${{ $reservation->payment }} CLP</td>
+                            <td>${{ $payment }} CLP</td>
                         </tr>
                     </table>
                 </div>

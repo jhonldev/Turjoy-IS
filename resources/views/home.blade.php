@@ -65,6 +65,9 @@
                                 Reservar
                             </button>
                         </div>
+                        <div>
+                            <p class="text-lg text-center text-red-custom-invalidate px-4 py-3 " id="error"></p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -105,16 +108,30 @@
             const dateFormatted = fecha.toLocaleDateString('es-ES', datePicker)
 
             const baseRate = document.getElementById('base-rate').value;
-
+            let payment = (baseRate * selectedSeat).toLocaleString('de-DE');
 
             e.preventDefault();
+            if (!datePicker) {
+                e.preventDefault();
+                let error = "debe seleccionar la fecha del viaje antes de realizar la reserva";
+                document.getElementById('error').textContent = error;
+                return;
+            }else{
+                if (!selectedSeat || isNaN(selectedSeat)) {
+                    e.preventDefault();
+                    let error = "debe seleccionar la cantidad de asientos antes de realizar la reserva";
+                    document.getElementById('error').textContent = error;
+                    return;
+                }
+            }
 
             if (selectedOrigin && selectedDestination && datePicker && selectedSeat && baseRate) {
                 Swal.fire({
+
                     //title: "¿Desea continuar?",
                     text: "El total de la reserva entre " + selectedOrigin +
                         " y " + selectedDestination + " para el día " + dateFormatted + " es de " +
-                        "$" + (baseRate * selectedSeat) + " CLP " +
+                        "$" + payment + " CLP " +
                         `(${selectedSeat} Asientos) ¿Desea continuar?`,
                     //icon: "warning",
                     showCancelButton: true,

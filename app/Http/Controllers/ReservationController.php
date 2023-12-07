@@ -14,8 +14,10 @@ use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
+
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Santiago');
         // Generar el numero de reserva
         $code = generateReservationNumber();
         // Modificar request
@@ -85,6 +87,7 @@ class ReservationController extends Controller
     {
 
         $code = $request->code;
+
         if($code == null){
             return back()->with('message','Debe proporcionar un código de reserva');
         }
@@ -97,8 +100,28 @@ class ReservationController extends Controller
 
         $route = $this->routeSearch($code);
 
-        return view('voucher.voucher', ['reservation' => $reservation, 'route' => $route]);
+        if($route == null){
+            return back()->with('message', 'verifique las letras mayúsculas y minúsculas del código de reserva');
+        }
 
+        $origin = $route['origin'];
+        $destination = $route['destination'];
+        $code = $reservation->code;
+        $quantity_seats = $reservation->quantity_seats;
+        $reservation_date_es = date('d-m-Y', strtotime($reservation->reservation_date));
+        $purchase_date_es = date('d-m-Y H:i:s', strtotime($reservation->purchase_date));
+        $payment = number_format($reservation->payment, 0, ',', '.');
+
+        return view('voucher.voucher', [
+            'origin' => $origin,
+            'destination' => $destination,
+            'code' => $code,
+            'quantity_seats' => $quantity_seats,
+            'reservation_date_es' => $reservation_date_es,
+            'purchase_date_es' => $purchase_date_es,
+            'payment' => $payment,
+            'reservation' => $reservation
+        ]);
     }
 
     public function downloadPDF($id){
@@ -116,11 +139,25 @@ class ReservationController extends Controller
     public function generatePDF($id){
         $reservation = Reservation::findOrFail($id);
 
+        $route = $this->routeSearch($reservation->code);
+        $origin = $route['origin'];
+        $destination = $route['destination'];
+        $code = $reservation->code;
+        $quantity_seats = $reservation->quantity_seats;
+        $reservation_date_es = date('d-m-Y', strtotime($reservation->reservation_date));
+        $purchase_date_es = date('d-m-Y H:i:s', strtotime($reservation->purchase_date));
+        $payment = number_format($reservation->payment, 0, ',', '.');
         // Crear una instacia de Dompdf
         $domPDF = new Dompdf();
 
         $data = [
-            'reservation' => $reservation,
+            'origin' => $origin,
+            'destination' => $destination,
+            'code' => $code,
+            'quantity_seats' => $quantity_seats,
+            'reservation_date_es' => $reservation_date_es,
+            'purchase_date_es' => $purchase_date_es,
+            'payment' => $payment,
             'date' => date('Y-m-d H:i:s'),
         ];
 
@@ -133,7 +170,7 @@ class ReservationController extends Controller
         $domPDF->render();
 
         // Generar nombre de archivo aleatorio
-        $filename = 'user_'.Str::random(10).'.pdf';
+        $filename = $code.'.pdf';
 
         // Guardar el PDF en la carpeta public
         $path = 'pdfs\\'.$filename;
@@ -144,11 +181,17 @@ class ReservationController extends Controller
             'uri' => $path,
         ]);
 
-        $route = $this->routeSearch($reservation->code);
 
 
         return view('voucher.voucher', [
-            'reservation' => $reservation,'route' => $route
+            'origin' => $origin,
+            'destination' => $destination,
+            'code' => $code,
+            'quantity_seats' => $quantity_seats,
+            'reservation_date_es' => $reservation_date_es,
+            'purchase_date_es' => $purchase_date_es,
+            'payment' => $payment,
+            'reservation' => $reservation
         ]);
     }
 }

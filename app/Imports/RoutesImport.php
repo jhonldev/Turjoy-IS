@@ -26,7 +26,7 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
             return back()->withErrors(['file' => $error]);
         }
 
-        foreach ($rows->slice(1) as $row) {
+        foreach ($rows as $row) {
             $origin = $row[0];
             $destination = $row[1];
             $available_seats = $row[2];
