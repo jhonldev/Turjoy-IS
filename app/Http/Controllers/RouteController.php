@@ -48,4 +48,12 @@ class RouteController extends Controller
 
 
     }
+
+    public function dailyRoutes(){
+        $routes = Route::all();
+        //obtiene todas las rutas en el sistema
+        //hay que hacer el calculo de los asientos disponibles
+        return view('daily',[
+            'routes'=>$routes]);
+    }
 }

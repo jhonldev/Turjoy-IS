@@ -26,6 +26,10 @@ Route::get('search', function () {
     return view('search');
 })->name('search.index');
 
+Route::get('daily', function () {
+    return view('daily');
+})->name('daily');
+
 Route::get('/', [RouteController::class, 'homeIndex'])->name('home');
 
 Route::get('/get/origins', [RouteController::class, 'originIndex']);
@@ -53,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/vouchers', [ReservationController::class, 'getByCode'])->name('search');
 Route::get('/vouchers/list', [ReservationController::class, 'search'])->name('searchVoucher');
 
+Route::get('/daily', [RouteController::class, 'dailyRoutes'])->name('dailyRoutes');
 // Redirect all wrong uri
 Route::get('/{any}', [AuthController::class, 'login'])->where('any', '.*')->name('wrongUri');
 
