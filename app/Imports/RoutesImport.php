@@ -17,6 +17,15 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
 
     public function collection(Collection $rows)
     {
+        $messages = makeMessages();
+
+        unset($rows[0]);
+
+        if (count(array_filter($rows->toArray(), 'array_filter')) === 0) {
+            $error = $messages['file.empty'];
+            return back()->withErrors(['file' => $error]);
+        }
+
         foreach ($rows as $row) {
             $origin = $row[0];
             $destination = $row[1];
@@ -84,6 +93,6 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
 
     public function startRow(): int
     {
-        return 2;
+        return 1;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Imports\RouteImport;
 use App\Imports\RoutesImport;
 use App\Models\Route;
 use Illuminate\Http\Request;
@@ -45,6 +46,14 @@ class RouteImportController extends Controller
             'file' => ['required', 'max:5120', 'mimes:xlsx']
         ], $messages);
 
+        $file = $request->file('file');
+        $rows = Excel::toArray(new RoutesImport, $file)[0];
+
+        if($rows[0][0] != 'Origen' || $rows[0][1] != 'Destino' || $rows[0][2] != 'Cantidad de asientos' || $rows[0][3] != 'Tarifa base'){
+            $error = $messages['file.inputs'];
+            return back()->withErrors(['file' => $error]);
+        }
+
         if ($request->hasFile('file')) {
             $file = request()->file('file');
             $import = new RoutesImport();
@@ -55,6 +64,7 @@ class RouteImportController extends Controller
             $duplicatedRows = $import->getDuplicatedRows();
 
             foreach ($validRows as $row){
+
                 $origin = $row[0];
                 $destination = $row[1];
 
