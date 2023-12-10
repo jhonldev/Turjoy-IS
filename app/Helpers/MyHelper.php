@@ -17,13 +17,18 @@ function makeMessages(){
         'seat.required' => 'Debe seleccionar la cantidad de asientos antes de realizar la reserva',
         'date.required' => 'Debe seleccionar la fecha del viaje antes de realizar la reserva',
         'reservation.data' => 'debe llenar todos los campos para realizar la reserva',
+        'initialDate.required' => 'debe seleccionar la fecha inicial para realizar la búsqueda',
+        'initialDate.date' => 'debe seleccionar una fecha válida para realizar la búsqueda',
+        'finishDate.required' => 'debe seleccionar la fecha final para realizar la búsqueda',
+        'finishDate.date' => 'debe seleccionar una fecha válida para realizar la búsqueda',
+        'finishDate' => 'la fecha de inicio a consultar no puede ser mayor que la fecha de término de la consulta',
     ];
 
     return $messages;
 
 }
 function validDate($date){
-    $fechaActual = date("d-m-Y");
+    $fechaActual = date('d-m-Y');
     $fechaVerificar = Carbon::parse($date);
     if ($fechaVerificar->lessThan($fechaActual)) {
         return true;
@@ -33,7 +38,7 @@ function validDate($date){
 
 function generateReservationNumber(){
     do {
-        $letters = Str::random(4); // Genera 4 letras aleatorias
+        $letters = generateRandomLetters(4); // Genera 4 letras aleatorias
         $numbers = mt_rand(10, 99); // Genera 2 números aleatorios
 
         $code = $letters.$numbers;
@@ -41,4 +46,16 @@ function generateReservationNumber(){
         $response = Reservation::where('code', $code)->exists();
     } while ($response);
     return $code;
+}
+
+function generateRandomLetters($len)
+{
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $randomString = '';
+
+    for ($i = 0; $i < $len; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+
+    return $randomString;
 }

@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add/route', [RouteImportController::class, 'indexAddRoutes'])->name('routes.index');
     Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('routes.check');
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
+
+    Route::get('/reservation/report', [ReservationController::class, 'reservationReportIndex'])->name('report-reservation.index');
+    Route::get('/search-reservation', [ReservationController::class, 'searchToDate'])->name('searchToDate');
 });
 
 Route::get('/vouchers', [ReservationController::class, 'getByCode'])->name('search');

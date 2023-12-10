@@ -192,4 +192,44 @@ class ReservationController extends Controller
             'reservation' => $reservation
         ]);
     }
+
+    public function reservationReportIndex()
+    {
+        $reservations = Reservation::all();
+
+        return view('admin.reservations.reports', [
+            'reservations' => $reservations,
+        ]);
+    }
+
+    public function reservationReportSearchIndex($reservations)
+    {
+        $reservationSearch = Reservation::find($reservations);
+
+        return view('admin.reservations.reports', [
+            'reservations' => $reservationSearch,
+        ]);
+    }
+
+    public function searchToDate(Request $request)
+    {
+        $messages = makeMessages();
+        $this->validate($request, [
+            'initialDate' => ['required', 'date'],
+            'finishDate' => ['required', 'date', 'after:initialDate'],
+        ], $messages);
+
+        $initialDate = $request->initialDate;
+        $finishDate = $request->finishDate;
+
+        $reservations = Reservation::whereBetween('reservation_date', [$initialDate, $finishDate])->get();
+
+        if ($reservations->count() === 0) {
+            return back()->with('message', 'no se encontraron reservas dentro del rango seleccionado');
+        } 
+
+        return view('admin.reservations.reports', [
+            'reservations' => $reservations,
+        ]);
+    }
 }
