@@ -7,8 +7,6 @@ use App\Models\Reservation;
 use App\Models\Route;
 use Illuminate\Http\Request;
 
-
-
 class RouteController extends Controller
 {
     public function homeIndex (){
@@ -41,19 +39,29 @@ class RouteController extends Controller
             $tickets = Reservation::where('idroute', $travel->id)->where('reservation_date', $date)->sum('quantity_seats');
             $seatNow = $travel->available_seats - $tickets;
 
+
             return response()->json([
                 'seats' => $seatNow, 'travel' => $travel,
             ]);
         }
 
-
     }
 
     public function dailyRoutes(){
-        $routes = Route::all();
-        //obtiene todas las rutas en el sistema
-        //hay que hacer el calculo de los asientos disponibles
-        return view('daily',[
-            'routes'=>$routes]);
+
+    $routes = Route::paginate(6);
+    $allRoutes = Route::all();
+
+    foreach ($routes as $route) {
+        $tickets = Reservation::where('idroute', $route->id)->where('reservation_date', today())->sum('quantity_seats');
+        $route->available_seats = $route->available_seats - $tickets;
     }
+
+    return view('daily', [
+        'routes' => $routes,
+        'allRoutes' => $allRoutes
+    ]);
+
+}
+
 }

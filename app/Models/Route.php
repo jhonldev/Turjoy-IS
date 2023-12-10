@@ -15,4 +15,5 @@ class Route extends Model
         'base_rate',
         'iduser'
     ];
+
 }

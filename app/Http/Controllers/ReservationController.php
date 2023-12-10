@@ -181,8 +181,6 @@ class ReservationController extends Controller
             'uri' => $path,
         ]);
 
-
-
         return view('voucher.voucher', [
             'origin' => $origin,
             'destination' => $destination,
