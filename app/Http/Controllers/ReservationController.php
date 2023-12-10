@@ -14,16 +14,18 @@ use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
-
-    public function store(Request $request)
-    {
+    /**
+     * Store a new reservation.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request) {
         date_default_timezone_set('America/Santiago');
-        // Generar el numero de reserva
-        $code = generateReservationNumber();
-        // Modificar request
+        $code = generateReservationNumber(); // Generate the reservation number
         $request->request->add(['code' => $code]);
 
-        // Validar
+        // Validate
         $makeMessages = makeMessages();
         $this->validate($request, [
             'origins' =>['required'],
@@ -33,16 +35,13 @@ class ReservationController extends Controller
             'date' => ['date', 'required'],
         ], $makeMessages);
 
-        //  Verificamos si la fecha ingresada es mayor a la fecha actual.
-        $invalidDate = validDate($request->date);
+        $invalidDate = validDate($request->date); // Check if the entered date is greater than the current date
         if ($invalidDate) {
             return back()->with('message', 'La fecha debe ser igual o mayor a '.date('d-m-Y'));
         }
 
-        // Obtener viaje
-        $route = Route::where('origin', $request->origins)->where('destination', $request->destinations)->first();
+        $route = Route::where('origin', $request->origins)->where('destination', $request->destinations)->first(); // Get the route
 
-        // Crear la reserva
         $reservation = Reservation::create([
         'code' => $request->code,
         'quantity_seats' => $request->seat,
@@ -56,17 +55,28 @@ class ReservationController extends Controller
             'id' => $reservation->id,
         ]);
     }
-    public function search(Request $request)
-    {
+
+    /**
+     * Search for all reservations.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function search(Request $request) {
         $reservations = Reservation::all();
         return view('reservations.index', ['reservations' => $reservations]);
     }
 
-    public function routeSearch($miString)
-    {
+    /**
+     * Search for a route based on reservation code.
+     *
+     * @param string $routeReference
+     * @return array|null
+     */
+    public function routeSearch($routeReference) {
         $reservations = Reservation::all();
         foreach ($reservations as $reservation){
-            if($reservation->code == $miString){
+            if($reservation->code == $routeReference){
                 $idRoute = $reservation->idroute;
                 $routes = Route::all();
                 foreach ($routes as $route){
@@ -83,8 +93,13 @@ class ReservationController extends Controller
 
     }
 
-    public function getByCode(Request $request)
-    {
+    /**
+     * Get reservation details by code.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getByCode(Request $request) {
 
         $code = $request->code;
 
@@ -124,7 +139,13 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function downloadPDF($id){
+    /**
+     * Download PDF for a reservation.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadPDF($id) {
         $reservation = Reservation::findOrFail($id);
 
         $path = storage_path('app\public\\'.$reservation->uri);
@@ -136,7 +157,13 @@ class ReservationController extends Controller
         return response()->download($path, $filename, ['Content-Type' => $mimeType]);
     }
 
-    public function generatePDF($id){
+    /**
+     * Generate PDF for a reservation.
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function generatePDF($id) {
         $reservation = Reservation::findOrFail($id);
 
         $route = $this->routeSearch($reservation->code);
@@ -147,7 +174,6 @@ class ReservationController extends Controller
         $reservation_date_es = date('d-m-Y', strtotime($reservation->reservation_date));
         $purchase_date_es = date('d-m-Y H:i:s', strtotime($reservation->purchase_date));
         $payment = number_format($reservation->payment, 0, ',', '.');
-        // Crear una instacia de Dompdf
         $domPDF = new Dompdf();
 
         $data = [
@@ -169,10 +195,8 @@ class ReservationController extends Controller
 
         $domPDF->render();
 
-        // Generar nombre de archivo aleatorio
         $filename = $code.'.pdf';
 
-        // Guardar el PDF en la carpeta public
         $path = 'pdfs\\'.$filename;
         Storage::disk('public')->put($path, $domPDF->output());
 
@@ -193,8 +217,12 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function reservationReportIndex()
-    {
+    /**
+     * Display the reservation report index view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function reservationReportIndex() {
         $reservations = Reservation::all();
 
         return view('admin.reservations.reports', [
@@ -202,8 +230,13 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function reservationReportSearchIndex($reservations)
-    {
+    /**
+     * Display the reservation report search index view.
+     *
+     * @param int $reservations
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function reservationReportSearchIndex($reservations) {
         $reservationSearch = Reservation::find($reservations);
 
         return view('admin.reservations.reports', [
@@ -211,8 +244,13 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function searchToDate(Request $request)
-    {
+    /**
+     * Search reservations by date range.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function searchToDate(Request $request) {
         $messages = makeMessages();
         $this->validate($request, [
             'initialDate' => ['required', 'date'],

@@ -9,29 +9,52 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function homeIndex (){
+        /**
+     * Display the home index view with the count of travels.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function homeIndex () {
         $travels = Route::get()->count();
         return view('home',[
             'countTravels' => $travels,
         ]);
     }
 
-    public function originIndex (){
+    /**
+     * Get distinct origins and return as JSON.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function originIndex () {
         $origins = Route::distinct()->orderBy('origin', 'asc')->pluck('origin');
         return response()->json([
             'origins' =>$origins,
         ]);
     }
 
-    public function searchDestinations($origin){
+    /**
+     * Search destinations based on origin and return as JSON.
+     *
+     * @param string $origin
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchDestinations($origin) {
         $destinations = Route::where('origin', $origin)->orderBy('destination', 'asc')->pluck('destination');
         return response()->json([
             'destination' =>$destinations,
         ]);
     }
 
-    public function seatings($origin, $destination, $date)
-    {
+    /**
+     * Get available seats and travel details for a specific route, origin, destination, and date.
+     *
+     * @param string $origin
+     * @param string $destination
+     * @param string $date
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function seatings($origin, $destination, $date) {
         // Obtenemos el viaje segun el origen y destino ingresado.
         $travel = Route::where('origin', $origin)->where('destination', $destination)->first();
 
@@ -47,7 +70,12 @@ class RouteController extends Controller
 
     }
 
-    public function dailyRoutes(){
+        /**
+     * Display the daily routes view with paginated routes and available seats.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function dailyRoutes() {
 
     $routes = Route::paginate(6);
     $allRoutes = Route::all();
@@ -62,6 +90,6 @@ class RouteController extends Controller
         'allRoutes' => $allRoutes
     ]);
 
-}
+    }
 
 }

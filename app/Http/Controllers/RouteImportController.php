@@ -12,8 +12,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class RouteImportController extends Controller
 {
-    public function indexAddRoutes()
-    {
+    /**
+     * Display the add routes index view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function indexAddRoutes() {
         if (session('validRows') || session('invalidRows') || session('duplicatedRows')) {
             session()->put('validRows', []);
             session()->put('invalidRows', []);
@@ -30,8 +34,12 @@ class RouteImportController extends Controller
         ]);
     }
 
-    public function indexRoutes()
-    {
+    /**
+     * Display the routes index view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function indexRoutes() {
         return view('admin.routes.routes', [
             'validRows' => session('validRows'),
             'invalidRows' => session('invalidRows'),
@@ -39,8 +47,13 @@ class RouteImportController extends Controller
         ]);
     }
 
-    public function routeCheck(Request $request)
-    {
+    /**
+     * Check and import routes from the uploaded file.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function routeCheck(Request $request) {
         $messages = makeMessages();
         $this->validate($request, [
             'file' => ['required', 'max:5120', 'mimes:xlsx']

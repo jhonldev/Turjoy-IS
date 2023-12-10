@@ -15,8 +15,12 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
     protected $duplicatedRows = [];
     protected $existingOriginsDestinations = [];
 
-    public function collection(Collection $rows)
-    {
+    /**
+     * Process the imported collection of rows.
+     *
+     * @param Collection $rows
+     */
+    public function collection(Collection $rows) {
         $messages = makeMessages();
 
         unset($rows[0]);
@@ -60,29 +64,51 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
         }
     }
 
-    public function hasDuplicateOriginDestination($origin, $destination)
-    {
+    /**
+     * Check if the origin and destination combination is duplicated.
+     *
+     * @param string $origin
+     * @param string $destination
+     * @return bool
+     */
+    public function hasDuplicateOriginDestination($origin, $destination) {
         $key = $origin . '-' . $destination;
         return in_array($key, $this->existingOriginsDestinations);
     }
 
-    public function getValidRows()
-    {
+    /**
+     * Get the valid rows from the import.
+     *
+     * @return array
+     */
+    public function getValidRows() {
         return $this->validRows;
     }
 
-    public function getInvalidRows()
-    {
+    /**
+     * Get the invalid rows from the import.
+     *
+     * @return array
+     */
+    public function getInvalidRows() {
         return $this->invalidRows;
     }
 
-    public function getDuplicatedRows()
-    {
+    /**
+     * Get the duplicated rows from the import.
+     *
+     * @return array
+     */
+    public function getDuplicatedRows() {
         return $this->duplicatedRows;
     }
 
-    public function headings(): array
-    {
+    /**
+     * Get the headings for the import.
+     *
+     * @return array
+     */
+    public function headings(): array {
         return [
             'origin',
             'destination',
@@ -91,8 +117,12 @@ class RoutesImport implements ToCollection, WithHeadings, WithStartRow
         ];
     }
 
-    public function startRow(): int
-    {
+    /**
+     * Get the start row for the import.
+     *
+     * @return int
+     */
+    public function startRow(): int {
         return 1;
     }
 }

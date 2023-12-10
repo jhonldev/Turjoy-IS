@@ -3,7 +3,12 @@ use Carbon\Carbon;
 use App\Models\Reservation;
 use Illuminate\Support\Str;
 
-function makeMessages(){
+/**
+ * Generate an array of error messages for validation.
+ *
+ * @return array
+ */
+function makeMessages() {
 
     $messages = [
         'email.required' => 'debe ingresar su correo electrónico para iniciar sesión',
@@ -25,21 +30,32 @@ function makeMessages(){
     ];
 
     return $messages;
-
 }
+
+/**
+ * Check if the given date is valid.
+ *
+ * @param string $date
+ * @return bool
+ */
 function validDate($date){
-    $fechaActual = date('d-m-Y');
-    $fechaVerificar = Carbon::parse($date);
-    if ($fechaVerificar->lessThan($fechaActual)) {
+    $actualDate = date('d-m-Y');
+    $verifyDate = Carbon::parse($date);
+    if ($verifyDate->lessThan($actualDate)) {
         return true;
     }
     return false;
 }
 
+/**
+ * Generate a unique reservation number.
+ *
+ * @return string
+ */
 function generateReservationNumber(){
     do {
-        $letters = generateRandomLetters(4); // Genera 4 letras aleatorias
-        $numbers = mt_rand(10, 99); // Genera 2 números aleatorios
+        $letters = generateRandomLetters(4);
+        $numbers = mt_rand(10, 99);
 
         $code = $letters.$numbers;
 
@@ -48,6 +64,12 @@ function generateReservationNumber(){
     return $code;
 }
 
+/**
+ * Generate a random string of letters.
+ *
+ * @param int $len
+ * @return string
+ */
 function generateRandomLetters($len)
 {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';

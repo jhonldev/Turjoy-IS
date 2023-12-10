@@ -36,7 +36,7 @@ Route::get('/get/origins', [RouteController::class, 'originIndex']);
 Route::get('/get/destinations/{origin}', [RouteController::class, 'searchDestinations']);
 Route::get('/seating/{origin}/{destination}/{date}', [RouteController::class, 'seatings']);
 
-//reservacion
+// Reservation
 Route::post('/reservation', [ReservationController::class, 'store'])->name('add-reservation');
 
 // Voucher
@@ -49,10 +49,12 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
+    // Travel routes
     Route::get('/add/route', [RouteImportController::class, 'indexAddRoutes'])->name('routes.index');
     Route::post('/addroute', [RouteImportController::class, 'routeCheck'])->name('routes.check');
     Route::get('/result/routes', [RouteImportController::class, 'indexRoutes'])->name('routesAdd.index');
 
+    // Reservation report
     Route::get('/reservation/report', [ReservationController::class, 'reservationReportIndex'])->name('report-reservation.index');
     Route::get('/search-reservation', [ReservationController::class, 'searchToDate'])->name('searchToDate');
 });
@@ -61,6 +63,7 @@ Route::get('/vouchers', [ReservationController::class, 'getByCode'])->name('sear
 Route::get('/vouchers/list', [ReservationController::class, 'search'])->name('searchVoucher');
 
 Route::get('/daily', [RouteController::class, 'dailyRoutes'])->name('dailyRoutes');
+
 // Redirect all wrong uri
 Route::get('/{any}', [AuthController::class, 'login'])->where('any', '.*')->name('wrongUri');
 

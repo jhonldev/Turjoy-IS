@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
-    public function login(Request $request){
+    /**
+     * Handles the login request.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login(Request $request) {
 
         $messages = makeMessages();
 
@@ -25,8 +30,12 @@ class AuthController extends Controller
         return redirect()->route('routes.index');
     }
 
-    public function logout()
-    {
+    /**
+     * Handles the logout request.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout() {
         Auth()->logout();
         return redirect()->route('home');
     }
