@@ -6,7 +6,7 @@
     @if ($reservations->count() > 0)
         <div class="flex justify-center gap-4">
             <a href="{{ route('report-reservation.index') }}"
-                class="bg-yellow-300 transition-all my-auto py-4 px-4 text-white rounded-lg">
+                class="bg-yellow-custom-clone transition-all my-auto py-4 px-4 text-white rounded-lg">
                 <svg class="w-5 h-5 hover:animate-spin text-gray-800 " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +44,7 @@
                     </div>
 
                     <button type="submit"
-                        class="bg-green-500 hover:bg-green-700 transition-all py-2 px-4 text-white rounded-lg">
+                        class="bg-green-custom-100 hover:bg-green-700 transition-all py-2 px-4 text-white rounded-lg">
                         Buscar
                     </button>
                 </div>
@@ -53,15 +53,15 @@
 
         <div class="max-w-sm mx-auto">
             @error('initialDate')
-                <p class="bg-red-400 font-semibold text-lg text-red-800 p-2 my-2 rounded-lg">{{ $message }}</p>
+                <p class="bg-red-custom-100 font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
             @enderror
 
             @if (session('message'))
-                <p class="bg-red-500 text-white my-2 rounded-xl text-sm text-center p-2">
+                <p class="bg-red-custom-100 text-grey-custom-light my-2 rounded-xl text-sm text-center p-2">
                     {{ session('message') }}</p>
             @endif
             @error('finishDate')
-                <p class="bg-red-400 font-semibold text-lg text-red-800 p-2 my-2 rounded-lg">{{ $message }}</p>
+                <p class="bg-red-custom-100 font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
             @enderror
         </div>
         <div class="relative overflow-x-auto">
