@@ -17,7 +17,7 @@
         }
 
         h2 {
-            color: #a00318;
+            color: #FF6B6B;
         }
 
         h3 {
@@ -47,7 +47,7 @@
         }
 
         .method-pay {
-            color: #a9a9a9;
+            color: #EAEAEA;
             font-weight: bold;
             margin-top: 5px;
             text-align: center;
