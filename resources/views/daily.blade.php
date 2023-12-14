@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="flex items-center justify-center">
-    <a href="{{ route('dailyRoutes') }}" class="bg-yellow-custom-clone transition-all my-auto py-4 px-4 text-white rounded-lg mr-4">
+    <a href="{{ route('dailyRoutes') }}" class="bg-yellow-custom-clone transition-all my-auto py-4 px-4 text-white rounded-lg mr-4" title= "Recargar busqueda">
         <svg class="w-5 h-5 hover:animate-spin text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97" />
         </svg>
