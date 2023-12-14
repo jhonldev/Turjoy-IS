@@ -27,8 +27,8 @@ Route::get('search', function () {
 })->name('search.index');
 
 Route::get('daily', function () {
-    return view('daily');
-})->name('daily');
+    return view('dailyRoutes');
+})->name('dailyRoutes');
 
 Route::get('/', [RouteController::class, 'homeIndex'])->name('home');
 

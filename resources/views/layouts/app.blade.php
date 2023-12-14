@@ -30,7 +30,8 @@
             <div class="text-center">
                 <button class="text-white font-medium rounded-lg text-sm px-5 py-2.5 mr-2  focus:outline-none"
                     type="button" data-drawer-target="drawer_navigation" data-drawer-show="drawer_navigation"
-                    data-drawer-placement="right" aria-controls="drawer_navigation">
+                    data-drawer-placement="right" aria-controls="drawer_navigation"
+                    title="Menú">
                     <img class="w-12" src="{{ asset('http://127.0.0.1:8000/images/icono-nueve-puntos.png') }}"
                         alt="Icono Nueve Puntos" class="w-6 h-6 text-white">
                 </button>
@@ -85,6 +86,14 @@
                             <span class="ml-3">Reservar pasajes</span>
                         </a>
                     </li>
+
+                <li>
+                    <a href="{{ route('dailyRoutes') }}"
+                        class="flex items-center p-2 rounded-lg text-white hover:bg-blue-custom-blueSmoke">
+                        <img src="{{ asset('http://127.0.0.1:8000/images/icono-rutas-dia.png') }}" alt="Texto Alternativo" class="w-14 h-12 mr-1">
+                        <span class="ml-3">Rutas del día</span>
+                    </a>
+                </li>
                 @endguest
                 <li>
                     <a href="{{ route('search.index') }}"

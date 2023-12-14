@@ -26,7 +26,7 @@
                         @csrf
                         <div>
                             <input type="text" name="code" id="code"
-                                class=" bg-grey-custom-neutral border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                class=" clobg-grey-custom-neutral border border-grey-custom-light text-grey-custom-dark sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Código de la reserva">
                             @if (session('message'))
                                 <p class="textError">{{ session('message') }}</p>
