@@ -53,17 +53,19 @@
 
         <div class="max-w-sm mx-auto">
             @error('initialDate')
-                <p class="bg-red-custom-100 font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
+                <p class="bg-red-custom-invalidate font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
             @enderror
 
             @if (session('message'))
-                <p class="bg-red-custom-100 text-grey-custom-light my-2 rounded-xl text-sm text-center p-2">
+                <p class="bg-red-custom-invalidate text-grey-custom-light my-2 rounded-xl text-sm text-center p-2">
                     {{ session('message') }}</p>
             @endif
             @error('finishDate')
-                <p class="bg-red-custom-100 font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
+                <p class="bg-red-custom-invalidate font-semibold text-lg text-grey-custom-light p-2 my-2 rounded-lg">{{ $message }}</p>
             @enderror
         </div>
+
+        @if (!$errors->any() && $reservations->count() > 0 && !(session('message')))
         <div class="relative overflow-x-auto">
             <table class="w-10/12 mx-auto text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -122,6 +124,7 @@
                 </tbody>
             </table>
         </div>
+        @endif
     @else
         <p>no hay reservas en sistema</p>
     @endif
